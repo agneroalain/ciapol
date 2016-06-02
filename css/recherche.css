@@ -1,0 +1,35 @@
+#rech{
+    margin-top: 80px;
+    display: block;
+}
+#rech form input[type="text"],#rech input[type="submit"]{
+    display: inline;
+    margin: 0 20px 0 20px;
+    padding: 0 10px 0 10px;
+}
+#rech form select{
+    margin:0 20px 0 20px;
+}
+#rech form select:focus,#rech form input:focus{
+    background-color:#34495e;
+    color: white; 
+}
+#champ{
+    display: block;
+    margin: auto;
+    width: 50%;
+}
+#champ form{
+    display: flex;
+    justify-content: space-between;
+}
+.homme{
+    background-color: lightblue;
+}
+.femme{
+    background-color:lightpink;
+}
+#resultat table{
+    margin: auto;
+    margin-top:20px;
+}

@@ -1,0 +1,27 @@
+#dash{
+    background-color: #FFF;
+    height: fit-content;
+    margin: auto;
+    margin-top: 20px;
+    padding:10px;}
+#dash_emp{
+    border: 0.5px solid black;
+    width: 400px;
+    height: fit-content;}
+#dash_cong{
+    border: 0.5px solid black;
+    width :66%;
+    min-width: 400px;}
+#dash_abs{
+    border: 0.5px solid black;
+      width :66%;}
+.flex{
+    display: flex;
+    justify-content: space-between;
+    padding-top:10px;
+    padding-bottom: 10px;}
+.ico{
+    width:30px;}
+.liste{
+    display: flex;
+    justify-content: space-around;}

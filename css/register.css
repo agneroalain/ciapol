@@ -1,0 +1,12 @@
+#page_reg{
+    background-color:#FFF;
+    width: 50%;
+    border-radius:30px;
+    overflow: hidden;
+    padding: 20px;}
+#cont_reg{
+ display: flex;
+ justify-content: space-around;
+ align-items: center;   
+ padding-top:20px;
+ padding-bottom: 20px;}

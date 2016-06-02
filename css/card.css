@@ -1,0 +1,25 @@
+.avatar{
+    width:100px;
+    border-radius:50%;
+    border:5px solid  white ;}
+.card{
+    position: relative;
+    height: 250px;
+    background:linear-gradient(-225deg, rgba(30,30,30,0.6) 30%, rgba(46,46,46,0.5) 80%), url("http://unsplash.it/400/300");
+    background-size:cover;
+    color:white;
+    width: 400px;
+    padding: 10px;
+    margin-bottom:10px; }
+.card-user{
+    position: absolute;
+    top:10px;
+    right:10px;}
+.card-category{
+    position: absolute;
+    top:10px;
+    left:10px;}
+.card-description{
+    position: absolute;
+    bottom:10px;
+    left:10px;}

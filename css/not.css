@@ -1,0 +1,54 @@
+#notif{
+    background-color: black;
+    width: 300px;
+    position: absolute;
+    top:50px;
+    right: 100px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.not{
+    background-color: #222;
+    color: white;
+    margin-bottom:5px;
+    padding: 10px;
+}
+#notif ul{
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+.notshow{
+   height: fit-content; 
+}
+.nothide{
+    height: 0px;
+}
+#nbr_notif{
+    background-color: red;
+    color: white;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#rapport_notif{
+    background-color: white;
+    width: 1000px;
+    margin: auto;
+    padding:30px;
+}
+.entete_notif{
+    display: flex;
+    justify-content: space-between;
+}
+#gauche{
+    width: 300px;
+}
+#droit{
+    width: 300px;
+}

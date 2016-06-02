@@ -1,0 +1,57 @@
+.overlay_dialogue{
+    position:absolute;
+    border-radius: 20px;
+    top:30%;
+    height: 40%;
+    overflow: hidden;
+    left:20%;
+    box-shadow:1px 1px 10px .5px black;
+    padding: 20px;
+    color: white;}
+.overlay_dialogue+.active{
+    position:absolute;
+    background-color: black;
+    border-radius: 20px;
+    top:30%;
+    height: 40%;
+    overflow: hidden;
+    left:20%;
+    box-shadow:1px 1px 10px .5px black;
+    padding: 20px;}
+.overlay{
+    background-color:#34495e;
+    position: absolute;
+    top:0px;
+    height: 100%;
+    width: 100%;
+    left: 0px;
+    opacity: .5;}
+.hide{
+    height: 0px;
+    overflow: hidden;}
+#newfic{
+    background-color:#1abc9c;
+    cursor: pointer;
+    color: white;
+    font-size: 22px;
+    text-align: center;
+    padding: 20px;
+    margin-top:20px;
+}
+#newfic:hover{
+    background-color: #3498db;
+    color: #34495e;
+}
+#close_popup{
+    background-color:red;
+    color: white;
+    cursor: pointer;
+    position:absolute;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50px;
+    top:-5px;
+    right: 0px;
+}

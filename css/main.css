@@ -1,0 +1,226 @@
+@import url("parametre.css");
+@import url("not.css");
+@import url("recherche.css");
+@import url("card.css");
+@import url("popup.css");
+@import url("tab.css");
+@import url("register.css");
+@import url("dashboard.css");
+@import url(https://fonts.googleapis.com/css?family=Arvo:400,400italic,700,700italic);
+body{
+    background: url("http://unsplash.it/2000/700");
+    background-attachment: fixed;
+    margin: 0px;
+    font-family: arvo normal400;
+    }
+header{
+    background-color: white;
+    position: fixed;
+    top: 0px;
+	width: 100%;
+    border-bottom: 2px solid #34495e;
+	margin:0px auto;
+    left:0px;
+    z-index: 5;
+    display: flex;
+    justify-content: space-between;}
+a{
+    text-decoration: none;
+    color: black;}
+header nav ul{
+    display: flex;
+    list-style: none;
+    color: gray;}
+header nav ul li{
+    
+    padding: 0px 15px 0px 15px;
+    display: flex;
+    padding-top:5px;
+    color: black;}
+header nav ul li:hover a{
+    color: #3498db;
+    cursor: pointer;}
+footer{
+    background-color: white;
+    height: 32px;
+    width: 100%;
+    margin:0px auto;
+    color: #3498db;
+    text-align: center;
+    padding-top:10px;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    z-index: 5;}
+#logo{
+	width: 60px;
+    height: 50px;}
+#contenu{
+	background-color: #3498db;
+	width: 500px;
+	border-radius: 25px;
+	padding: 20px;
+	margin: auto;
+	margin-top: 180px;
+    opacity:.8;}
+form input[type="text"],form input[type="date"],form input[type="datetime"],form input[type="email"],form input[type="number"],form input[type="search"],form input[type="time"],form input[type="url"],form input[type="password"],form input[type="file"],form input[type="tel"],form textarea,form select {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    background: rgba(255,255,255,.1);
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    margin: 0;
+    outline: 0;
+    padding: 7px;
+    width: 100%;
+    box-sizing: border-box; 
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box; 
+    background-color: #34495e;
+    color:white;
+    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    margin-bottom: 30px;}
+form input[type="text"]:focus,form input[type="date"]:focus,form input[type="datetime"]:focus,form input[type="email"]:focus,form input[type="number"]:focus,form input[type="search"]:focus,form input[type="time"]:focus,form input[type="url"]:focus,form input[type="password"]:focus,form input[type="tel"]:focus,form textarea:focus,form select:focus{
+    background: #d2d9dd;
+    color:black;}
+
+form input[type="submit"],form input[type="button"]{
+    position: relative;
+    display: block;
+    padding: 19px 39px 18px 39px;
+    color: #FFF;
+    margin: 0 auto;
+    background: #1abc9c;
+    font-size: 18px;
+    text-align: center;
+    font-style: normal;
+    width: 100%;
+    border: 1px solid #16a085;
+    border-width: 1px 1px 3px;
+    margin-bottom: 10px;}
+form input[type="submit"]:hover,form input[type="button"]:hover{
+    background: white;
+    color:#3498db;
+    /* faire une annimation */}
+.sub{
+    position: relative;
+    display: block;
+    padding: 19px 39px 18px 39px;
+    color: #FFF;
+    margin: 0 auto;
+    background: #1abc9c;
+    font-size: 18px;
+    text-align: center;
+    font-style: normal;
+    width: 100%;
+    border: 1px solid #16a085;
+    border-width: 1px 1px 3px;
+    margin-bottom: 10px;}
+.sub:hover{
+    background: #3498db;
+    /* faire une annimation */}
+#page_space{
+    height: 60px;}
+#page_content{
+    background-color: #242424;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 30px;
+    margin-bottom: 20px;}
+#profil{
+    float:left;
+    width:120px;
+    height: 150px;}
+#carte{
+    background-color: #FFF;
+    width: 400px;
+    padding: 10px;
+    box-shadow: 0 5px 0 rgba(0,0,0,0.05) inset;
+    display: inline-block;
+    vertical-align: top;}
+#fichier{
+    background-color: #FFF;
+    width: 400px;
+    box-shadow: 0 5px 0 rgba(0,0,0,0.05) inset;
+    padding: 10px;}
+#carte p{
+    float: left;}
+#carte img{
+    float: left;
+    margin: 10px;}
+#ecran{
+    display: inline-block;
+    width: 66%;}
+#interface{
+    background-color: white;
+    padding: 10px;
+    min-width:400px;}
+#bilan{
+    margin-top:10px;
+    background-color: white;
+    padding: 10px;
+    min-width: 400px;
+    overflow: hidden;}
+.rub{
+    background-color: #3498db;
+    text-align: center;
+    border-radius: 10px;
+    border-bottom:5px solid #685AFF;
+    width: 200px;
+    cursor: pointer;
+    margin: auto;
+    padding: 10px 0px 10px 0px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    color: white;
+    min-width: 400px;}
+#left{
+    width: 430px;
+    display: inline-block;
+    vertical-align: top;}
+.s_left{
+    margin-bottom:10px;}
+#info{
+   
+        display:flex;
+        }
+#info ul{
+     list-style-type: none;
+     left:0px;}
+.titre{
+    background-color: #3498db;
+    margin-top: 0px;
+    width: 100%;
+    color: #34495e;
+    text-align: center;
+    }
+#ecran p {
+    background-color:white;}
+.labloc{
+    width: 100%;
+    display: block;
+    margin-bottom:10px; }
+.bloc{
+    background-color: #97D6FB;
+    min-width: 400px;
+    height: 0px;
+    overflow:hidden;}
+td{
+    background-color: white;
+    padding: 5px;}
+.tableau{
+    background-color: #97D6FB;}
+#doc{
+    margin-top:50px;
+    height: 600px;
+}
+#message{
+    color: white;
+    text-align: center;
+    position: absolute;
+    top: 40%;
+    left:30%;
+    z-index: -1;
+}
