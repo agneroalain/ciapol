@@ -7,13 +7,16 @@
 #dash_emp{
     border: 0.5px solid black;
     width: 400px;
+    box-shadow: 0 1em 2em 0 rgba(0, 0, 0, 0.1);
     height: fit-content;}
 #dash_cong{
     border: 0.5px solid black;
     width :66%;
+    box-shadow: 0 1em 2em 0 rgba(0, 0, 0, 0.1);
     min-width: 400px;}
 #dash_abs{
     border: 0.5px solid black;
+    box-shadow: 0 1em 2em 0 rgba(0, 0, 0, 0.1);
       width :66%;}
 .flex{
     display: flex;

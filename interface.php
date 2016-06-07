@@ -15,7 +15,7 @@
             <div id="page_content"><!-- debut page-content -->
                 <div id="left"><!-- debut left -->
                     <div class="card"><!-- debut card -->
-                        <img src="assets/images/profil_emp/<?php echo $_SESSION['photoprof_emp'] ?>" alt="" class="avatar card-user">
+                        <img src="assets/images/profil_emp/<?php echo $_SESSION['mat_emp'] ?>.jpg" alt="" class="avatar card-user">
                         <span class="card-category">EMPLOYE</span>
                         <div class="card-description"><!-- debut card-description -->
                             <p><h3><?php echo $_SESSION['nom_emp']." ".$_SESSION['pnom_emp']; ?></h3></p>
@@ -38,7 +38,7 @@
                                 $i=1;
                                 while ($fichierinfo = $reqfichier->fetch())
                                 {
-                                    echo "<tr><td align='center'><img class='ico' src='assets/ico/".substr($fichierinfo['ext_fichier'],1).".png' /><td align='center'>".$fichierinfo["type"]."</td></td><td align='center'><a href='liredoc.php?doc=".$fichierinfo['nom']."'>Cliquez ici pour consulter</a></td></tr>";
+                                    echo "<tr><td align='center'><img class='ico' src='assets/ico/".substr($fichierinfo['ext_fichier'],1).".png' /><td align='center'>".$fichierinfo["type"]."</td></td><td class='bt_tab' align='center'><a href='liredoc.php?doc=".$fichierinfo['nom']."'>Cliquez ici pour consulter</a></td></tr>";
                                     $i++;
                                 }
                             ?>
@@ -70,11 +70,21 @@
                                 <div id="interface"><!-- debut interface -->
                                     <center>
                                         <h3 class="titre">INTERFACE</h3>
+                                        <?php if(isset($_GET['errcong'])){
+                                            echo "<span style='color:red'><i>".$_GET['errcong']."</i></span>";
+                                        } ?>
                                         <h3 class="rub"  onclick="return true" onmousedown="choix('div1');">DEMANDE DE DEPART EN CONGE </h3>
                                         <div class="bloc" id="div1" ><!-- debut div1 -->
                                             <form method="POST" action="php/conge.php" id="demandecong">
-                                                <p> <label for="dat_dep_cong" class="labloc"/>Date de depart : </label> <input type="date" name="dat_dep_cong" id="dat_dep_cong"/>  </p>
-                                                <p> <label for="dat_fin_cong" class="labloc"/>Date de retour : </label> <input type="date" name="dat_fin_cong" id="dat_fin_cong"/>  </p>
+                                                <?php 
+                                                    $an = date('Y');
+                                                    $mois = date('m');
+                                                    $jour = date('d', strtotime("+3 days"));
+                                                    $min = $an.'-'.$mois.'-'.$jour;
+                                                    $max = $an.'-12-31';
+                                                ?>
+                                                <p> <label for="dat_dep_cong" class="labloc"/>Date de depart : </label> <input type="date" name="dat_dep_cong" max="<?php echo $max; ?>" min="<?php echo $min; ?>" id="dat_dep_cong"/>  </p>
+                                                <p> <label for="dat_fin_cong" class="labloc"/>Date de retour : </label> <input type="date" name="dat_fin_cong" max="<?php echo $max; ?>" min="<?php echo $min; ?>" id="dat_fin_cong"/>  </p>
                                                 <p> <label for="obs_cong" class="labloc"/>Motif : </label> <textarea name="obs_cong" id="obs_cong"></textarea> </p>                                
                                                 <p> <label for="congadr" class="labloc"/>Adresse durant les congés : </label> <input type="text" name="congadr" id="congadr"/>  </p>
                                                 <p> <label for="congint" class="labloc"/>Nom de la perssonne devant assurer l'interime : </label> 
@@ -89,11 +99,14 @@
                                                 <p><input type="submit" name="demandecong" value="Envoyer la demande"/></p>
                                             </form>
                                         </div><!-- fin div1  -->
+                                        <?php if(isset($_GET['errabs'])){
+                                            echo "<span style='color:red'><i>".$_GET['errabs']."</i></span>";
+                                        } ?>
                                         <h3 class="rub"  onclick="return false" onmousedown="choix('div2');">DEMANDE D'AUTORISATION D'ABSENCE</h3>
                                         <div class="bloc" id="div2" ><!-- debut div2 -->
                                             <form method="POST" action="php/absence.php" id="demandecong">
-                                                <p> <label for="dat_dep_abs" class="labloc"/>Date de depart : </label> <input type="date" name="dat_dep_abs" id="dat_dep_abs"/>  </p>
-                                                <p> <label for="dat_fin_abs" class="labloc"/>Date de retour : </label> <input type="date" name="dat_fin_abs" id="dat_fin_abs"/>  </p>
+                                                <p> <label for="dat_dep_abs" class="labloc"/>Date de depart : </label> <input type="date" name="dat_dep_abs" max="<?php echo $max; ?>" min="<?php echo $min; ?>" id="dat_dep_abs"/>  </p>
+                                                <p> <label for="dat_fin_abs" class="labloc"/>Date de retour : </label> <input type="date" name="dat_fin_abs" max="<?php echo $max; ?>" min="<?php echo $min; ?>" id="dat_fin_abs"/>  </p>
                                                 <p> <label for="obs_abs" class="labloc"/>Motif : </label> <textarea name="obs_abs" id="obs_abs"></textarea> </p>
                                                 <p> <label for="absint" class="labloc"/>Nom de la perssonne devant assurer l'interime : </label> 
                                                 <select name="absint" id="absint">
@@ -136,6 +149,7 @@
                                                 <td>Date retour</td>
                                                 <td>Interimaire</td>
                                                 <td>Motif</td>
+                                                <td>Fiche</td>
                                             </tr>
                                             <?php 
                                                 // recuperation de toutes les informations de conge de l'utilisateur
@@ -143,7 +157,7 @@
                                                 $reqcong->execute(array($_SESSION['mat_emp']));
                                                 
                                                 while ($conginfo = $reqcong->fetch()){
-                                                            echo "<tr><td>".$conginfo["cod_dem"]."</td><td>".$conginfo["dat_dem"]."</td><td>".$conginfo["dat_deb_dem"]."</td><td>".$conginfo["dat_fin_dem"]."</td><td>".$conginfo["mat_int"]."</td><td>".$conginfo["lib_dem"]."</td></tr>";
+                                                            echo "<tr><td>".$conginfo["cod_dem"]."</td><td>".$conginfo["dat_dem"]."</td><td>".$conginfo["dat_deb_dem"]."</td><td>".$conginfo["dat_fin_dem"]."</td><td>".$conginfo["mat_int"]."</td><td>".$conginfo["lib_dem"]."</td><td class='bt_tab'><a href='notification.php?id=".$conginfo['cod_dem']."'> Consulter la fiche</a></td></tr>";
                                                         }
                                                 ?>
                                         </table>
@@ -225,6 +239,6 @@
     <?php include("include/footer.php"); 
      }
      else{
-         header("location:index.php");
+         echo"<br/><br/><center><h1> Vous devez etre connecté pour acceder à cette page !</h1><br /> <a href='index.php'>Cliquez ici pour acceder à la page de connexion ! </a></center>";
      }
     ?>

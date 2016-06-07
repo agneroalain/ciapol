@@ -1,17 +1,22 @@
 #notif{
-    background-color: black;
+    background-color: #3498db;
     width: 300px;
     position: absolute;
     top:50px;
     right: 100px;
+    box-shadow: 0 1em 2em 0 rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     overflow: hidden;
+    
 }
 .not{
-    background-color: #222;
-    color: white;
+    background-color: white;
+    color: #222;
     margin-bottom:5px;
+    border-radius: 10px;
     padding: 10px;
+    display: flex;
+    justify-content: space-around;
 }
 #notif ul{
     margin: 0px;
@@ -22,6 +27,11 @@
 }
 .notshow{
    height: fit-content; 
+   padding:10px;
+}
+.no_notif{
+    color: white;
+    padding: 10px;
 }
 .nothide{
     height: 0px;
@@ -39,8 +49,9 @@
 #rapport_notif{
     background-color: white;
     width: 1000px;
-    margin: auto;
+    margin: 80px auto;
     padding:30px;
+    box-shadow: 0 1em 2em 0 rgba(0, 0, 0, 0.5);
 }
 .entete_notif{
     display: flex;
@@ -51,4 +62,12 @@
 }
 #droit{
     width: 300px;
+}
+#notif_page{
+    padding: 50px;
+    background-color: #3498db;
+}
+#notif_page .not:hover{
+    background-color: #222;
+    color: white;
 }

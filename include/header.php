@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="css/main.css"/>
+		<link rel="stylesheet" type="text/css" href="css/main.css" media="screen"/>
+		<link rel="stylesheet" type="text/css" href="imprim_dem.css" media="print" />
 		<meta charset="UTF-8"/>
 		<title>CIAPOL - Centre Ivoirien Anti Polution</title>
 		<script src='js/jquery-1.12.2.min.js'></script>
@@ -39,9 +40,13 @@
 											if($not['type_notif'] == '1'){ $typ = 'absence';}else{ $col = 'conge';}
 											echo "<a href='notification.php?id=".$not['cod_dem']."'><li class='not'><div class='notimg'></div><div class='notdesc'>".$not['lib_notif']."</div><div class='notdate'></div></li>";
 										}
+										if($i==0){
+											echo "<div class='no_notif'/><center>Aucune notification pour l'instant !</center></div>";
+										}
 										
+										echo "<li class='not'><a href='notification.php'> HISTORIQUE DES NOTIFICATIONS </a></li>";
 										?>
-										<li><a href='#'> HOSTORIQUE DES NOTIFICATIONS </a></li>
+										
 							</ul>
 						</div>
 						<?php

@@ -13,7 +13,7 @@
                 <div class="flex">
                      <div id="dash_emp">
                     <center><h3 class="titre">EMPLOYE</h3></center>
-                       <table>
+                       <table >
                             <tr>
                                 
                                 <td><img src="assets/ico/ajouter.png" class="ico" /></td> <td><a href="register.php">Ajouter un employé </a></td>
@@ -31,9 +31,9 @@
                 <div id="dash_cong">
                     <center><h3 class="titre">DEMMANDE DE CONGE</h3></center>
                         <center><i><font color="red"> <?php if (isset($_GET['er'])){echo $_GET['er'];} ?></font></i></center>
-                            <table width="100%">
+                            <table align="center" width="95%" border="1px">
                                 <tr>
-                                        <td>code</td><td>date demande</td><td>periode</td><td>interimaire</td><td>motif</td><td>accepter</td><td>réfuser</td>
+                                        <td>CODE</td><td>DATE DEMANDE</td><td>PERIODE</td><td>INTERIMAIRE</td><td>MOTIF</td><td>ACCEPTER</td><td>REFUSER</td>
                                     </tr>
                                 <?php 
                                     include("include/connectdb.php");
@@ -49,7 +49,7 @@
                                     </form>
                                     
                             </table>
-                             <div class="liste">  <a href=""> Listes des demmandes refusées </a> <a href="">Listes des demmandes acceptées</a></div>
+                             <!--<div class="liste">  <a href=""> Listes des demmandes refusées </a> <a href="">Listes des demmandes acceptées</a></div>-->
                                  
                 </div>
             </div>
@@ -73,9 +73,9 @@
                 </div>
                 <div id="dash_abs">
                     <center><h3 class="titre">DEMMANDE D'ABSENCE</h3></center>
-                        <table width="100%">
+                        <table align="center" width="95%" border="1px">
                            <tr>
-                                <td>code</td><td>date demande</td><td>periode</td><td>interimaire</td><td>motif</td><td>accepter</td><td>réfuser</td>
+                                <td>CODE</td><td>DATE DEMANDE</td><td>PERIODE</td><td>INTERIMAIRE</td><td>MOTIF</td><td>ACCEPTER</td><td>REFUSER</td>
                             </tr>
                            <?php 
                             include("include/connectdb.php");
@@ -90,7 +90,7 @@
                                }
                               ?>
                        </table>
-                              <div class="liste">  <a href=""> Listes des demmandes refusées </a> <a href="">Listes des demmandes acceptées</a></div>   
+                              <!--<div class="liste">  <a href=""> Listes des demmandes refusées </a> <a href="">Listes des demmandes acceptées</a></div>   -->
                 </div>
                </div>
             </div>
@@ -99,9 +99,11 @@
     <br>
     <br>
     <?php
-        if(isset($_POST['dem_at_congdemcong']))
-        {
-            
+     
+            include("include/footer.php");
+        }
+        else {
+            echo"<br/><br/><center><h1> Vous devez etre connecté pour acceder à cette page !</h1><br /> <a href='index.php'>Cliquez ici pour acceder à la page de connexion ! </a></center>";
         }
     ?>
-	<?php include("include/footer.php");} ?>
+	

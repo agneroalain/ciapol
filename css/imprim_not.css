@@ -1,0 +1,28 @@
+#rapport_notif{
+    background-color: white;
+    width: 1000px;
+    margin: 80px auto;
+    padding:30px;
+    box-shadow: 0 1em 2em 0 rgba(0, 0, 0, 0.5);
+}
+.entete_notif{
+    display: flex;
+    justify-content: space-between;
+}
+#gauche{
+    width: 300px;
+}
+#droit{
+    width: 300px;
+}
+#notif_page{
+    padding: 50px;
+    background-color: #3498db;
+}
+#notif_page .not:hover{
+    background-color: #222;
+    color: white;
+}
+header{
+    display: none;
+}

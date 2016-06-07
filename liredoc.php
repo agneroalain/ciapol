@@ -1,6 +1,9 @@
 <?php 
     session_start();
-    include('include/header.php');
+		include('include/connectdb.php');
+		if(isset($_SESSION['mat_emp']))
+		{
+            include('include/header.php');
 ?>
 <div id="doc">
     <div id="message">
@@ -13,4 +16,8 @@
 </div>
 <?php 
     include('include/footer.php');
+        }
+        else {
+            echo"<br/><br/><center><h1> Vous devez etre connecté pour acceder à cette page !</h1><br /> <a href='index.php'>Cliquez ici pour acceder à la page de connexion ! </a></center>";
+        }
 ?>

@@ -1,32 +1,33 @@
+<?php session_start(); ?>
+<form method="post" action="" enctype="multipart/form-data">
+    <label> Avatar : </label>
+    <input type="file" name="avatar" />
+    <input type="submit" value="envoyer" / >
+</form>
 <?php
-session_start();
- if(isset($_POST['demandecong']))
- {
-     include('include/connectdb.php');
-     
-     $datdeb = $_POST['congdep'];
-     $datfin = $_POST['congret'];
-     $obs = $_POST['congmot'];
-     $mat = $_SESSION['mat_emp'];
-     $interim = "ok";
-     $todayh = getdate();
-     $d = $todayh['mday'];
-     $m = $todayh['mon'];
-     $y = $todayh['year'];
-     $dat = $d.'-'.$m.'-'.$y;
-    //$q = "INSERT INTO 'conge'('dat_deb_cong', 'dat_fin_cong', 'obs_cong', 'mat_emp', 'interimaire', 'dat_cong') VALUES(:dat_deb_cong, :dat_fin_cong, :obs_cong, :mat_emp, :interimaire, :dat_cong);";
-    //$query = $bdd->prepare($q);
-    /*$result = $query->execute(array(
-        ":dat_deb_cong" => $datdeb,
-        ":dat_fin_cong" => $datfin,
-        ":obs_cong" => $obs,
-        ":mat_emp" => $mat,
-        ":interimaire" => $interim,
-        ":dat_cong" => $dat
-    ));*/
-    $sql = "INSERT INTO `conge` (`cod_cong`, `dat_deb_cong`, `dat_fin_cong`, `obs_cong`, `mat_emp`, `interimaire`, `dat_cong`) VALUES (NULL, \'2016-04-19\', \'2016-04-22\', \'azert\', \'A2A2A2\', \'zerezrez\', \'2016-04-20\')";
-    $q = $bdd->query($sql);
-    //$result = $q->execute();
-    echo "abab";
+
+if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])){
+    $tailleMax = 2097152;
+    $extensionsValides = array('jpg','jpeg','png');
+    if($_FILES['avatar']['size'] < $tailleMax){
+        $extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'],'.'),1));
+        if(in_array($extensionUpload,$extensionsValides)){
+            $chemin = "assets/images/profil_emp/".$_SESSION['mat_emp'].".".$extensionUpload;
+            $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'],$chemin);
+            if($resultat){
+                
+            }
+            else {
+                $msg = "Erreur durant l'importation";
+            }
+        }
+        else{
+            $msg = 'votre photo de profil n\'est pas au bon format';
+        }
+    }
+    else{
+        $msg = 'VOtre photo de profil ne doit pas depasser 2Mo';
+    }
 }
+
 ?>

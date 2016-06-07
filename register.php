@@ -1,6 +1,6 @@
-<?php session_start(); ?>
-
-    <?php
+<?php session_start(); 
+    if(isset($_SESSION['mat_emp']))
+		{
 		include('include/connectdb.php');
 		if(isset($_SESSION['mat_emp']))
 		{
@@ -13,7 +13,11 @@
 <div id="cont_reg">
     		<div id="page_reg">
                 <center><h3 class="titre">INSCRIPTION</h3></center>
-                <form method="post" action="#">
+                <form method="post" action="" enctype="multipart/form-data">
+                    <?php if(isset($msg)){
+                        echo $msg;
+                    }
+                    ?>
                     <p>
                         <label for="">Matricule de l'employé :</label><input type="text" name="mat_emp"/>
                     </p>
@@ -203,7 +207,6 @@
                     </p>
                      <p>
                         <label for="">Photo de profil  :</label><input type="file" placeholder="" name="photo" />
-                      <?php if (!empty($_FILES)) { echo $_FILES; } ?>
                     </p>
                     <p>
                         <label for="">Role de l'employé :</label>
@@ -231,13 +234,44 @@
         }
      ?>
      <?php
-    
-                                           $photoprof_emp = $nom_fichier;
-                                           $mat_emp = $_POST['mat_emp'];// Limiter le nombre de caratere pouvant etre inseré
-                                            $nom_emp = $_POST['nom_emp'];
-                                            $pnom_emp = $_POST['pnom_emp'];
-                                            $datnaiss_emp = $_POST['datnaiss_emp'];
-                                            $mail_emp = $_POST['mail_emp'];
+        if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])){
+            $tailleMax = 2097152;
+            $extensionsValides = array('jpg','jpeg','png');
+            if($_FILES['avatar']['size'] < $tailleMax){
+                $extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'],'.'),1));
+                if(in_array($extensionUpload,$extensionsValides)){
+                    $chemin = "assets/images/profil_emp/".$_SESSION['mat_emp'].".".$extensionUpload;
+                    $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'],$chemin);
+                    if($resultat){
+                       
+                                           
+                    }
+                    else {
+                        $msg = "Erreur durant l'importation";
+                    }
+                }
+                else{
+                    $msg = 'votre photo de profil n\'est pas au bon format';
+                }
+            }
+            else{
+                $msg = 'VOtre photo de profil ne doit pas depasser 2Mo';
+            }
+}
+if(isset($_POST['mat_emp']) AND !empty($_POST['mat_emp'])){
+    $mat_emp = $_POST['mat_emp'];// Limiter le nombre de caratere pouvant etre inseré
+    if(isset($_POST['nom_emp']) AND !empty($_POST['nom_emp'])){
+        $nom_emp = $_POST['nom_emp'];
+        if(isset($_POST['pnom_emp']) AND !empty($_POST['pnom_emp'])){
+                $pnom_emp = $_POST['pnom_emp'];
+                if(isset($_POST['datnaiss_emp']) AND !empty($_POST['datnaiss_emp'])){
+                       $datnaiss_emp = $_POST['datnaiss_emp'];
+                       if(isset($_POST['mail_emp']) AND !empty($_POST['mail_emp'])){
+                               $mail_emp = $_POST['mail_emp'];
+                               if(isset($_POST['sex_emp']) AND !empty($_POST['sex_emp'])){
+                                         $sex_emp = $_POST['sex_emp'];
+                                          if(isset($_POST['mdp_emp']) AND !empty($_POST['mdp_emp'])){
+                                            $mdp_emp = $_POST['mdp_emp'];
                                             $adrpost_emp = $_POST['adrpost_emp'];
                                             $nat_emp = $_POST['nat_emp'];
                                             $cont_emp = $_POST['cont_emp'];
@@ -247,14 +281,52 @@
                                             $sitfam_emp = $_POST['sitfam_emp'];
                                             $cod_cat_emp = $_POST['cod_cat_emp'];
                                             $num_ser = $_POST['num_ser'];
-                                            
                                             $role_id = $_POST['role_id'];
-                                            $mdp_emp = $_POST['mdp_emp'];
-                                            $sex_emp = $_POST['sex_emp'];
-                                            $requete = $bdd->prepare('INSERT INTO employe(mat_emp,nom_emp, pnom_emp, datnaiss_emp, mail_emp, adrpost_emp, nat_emp, cont_emp, lieures_emp, datemb_emp, fonct_emp, sitfam_emp, cod_cat_emp,photoprof_emp,mdp_emp,role_id,sex_emp) VALUES (?,?,?,?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?,?,?,?)');
-                                            $requete->execute(array($mat_emp,$nom_emp,$pnom_emp,$datnaiss_emp,$mail_emp,$adrpost_emp,$nat_emp,$cont_emp,$lieures_emp,$datemb_emp,$fonc_emp,$sitfam_emp,$cod_cat_emp,$photoprof_emp,$mdp_emp,$role_id,$sex_emp));
+                                             $requete = $bdd->prepare('INSERT INTO employe(mat_emp,nom_emp, pnom_emp, datnaiss_emp, mail_emp, adrpost_emp, nat_emp, cont_emp, lieures_emp, datemb_emp, fonct_emp, sitfam_emp, cod_cat_emp,mdp_emp,role_id,sex_emp) VALUES (?,?,?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?,?,?,?)');
+                                            $requete->execute(array($mat_emp,$nom_emp,$pnom_emp,$datnaiss_emp,$mail_emp,$adrpost_emp,$nat_emp,$cont_emp,$lieures_emp,$datemb_emp,$fonc_emp,$sitfam_emp,$cod_cat_emp,$mdp_emp,$role_id,$sex_emp));
                                             $req2 = $bdd->prepare('INSERT INTO jointure_emp_serv(mat_emp,num_ser) VALUES (?,?)');
                                             $req2->execute(array($mat_emp,$num_ser));
-                                            header('location:../interface.php'); 
+                                            header('location:interface.php');
+                                          }
+                                          else {
+                                              $msg =" vous devez definir un mot de passe pour l'employé !";
+                                          }
+                               }
+                               else {
+                                   $msg = " vous devez definir lesexe de l'employé !";
+                               }
+                                            
+                       }
+                       else{
+                           $msg = " vous devez renseigner le champ mail de l'employé !";
+                       }
+                }
+                else {
+                    $msg = "vous devez renseigner le champ date de naissance de l'employé !";
+                }
+        }
+        else {
+            $msg = "vous devez renseigner le champ prenom de l'employé !";
+        }
+        
+    }
+    else {
+        $msg = "Vous devez renseigner le champ nom de l'employé !";
+    }
+}
+else {
+    $msg = "Vous devez remplir le champ matricule de l'employé !";
+}
+     
+                                            
+        }
+        else {
+             echo"<br/><br/><center><h1> Vous devez etre connecté pour acceder à cette page !</h1><br /> <a href='index.php'>Cliquez ici pour acceder à la page de connexion ! </a></center>";
+        }                                    
+                                            
+                                            
+                                            
+                                           
+                                           
                                        
                                 ?>
