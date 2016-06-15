@@ -28,7 +28,7 @@ session_start();
     <table>
     <?php
     // liste de tout les employés
-    $req = $bdd->prepare("SELECT * FROM employe");
+    $req = $bdd->prepare("SELECT * FROM employe ");
    /* //DEFINIR L4ENTETE DANS UN TABLEAU EN FONCTION DE LA TABLE et l'afficher a l'aide d'une bouche 
     $ent1[] = ['nom & prenom', 'fonction', 'service d\'acceuil'];
     for($i=0;$i<=$ent1[].length;$i++){
