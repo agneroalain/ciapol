@@ -1,3 +1,6 @@
+*{
+    font-size:25px;
+}
 #rapport_notif{
     background-color: white;
     width: 1000px;
@@ -10,10 +13,10 @@
     justify-content: space-between;
 }
 #gauche{
-    width: 300px;
+    width: 400px;
 }
 #droit{
-    width: 300px;
+    width: 400px;
 }
 #notif_page{
     padding: 50px;
@@ -23,6 +26,15 @@
     background-color: #222;
     color: white;
 }
+.ico{
+    width: 50px;
+}
+input{
+    display: none;
+}
 header{
+    display: none;
+}
+footer{
     display: none;
 }

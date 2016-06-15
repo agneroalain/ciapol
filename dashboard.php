@@ -48,7 +48,9 @@
                                     ?>  
                                     </form>
                                     
+                                    
                             </table>
+                            <center><p><a href="demande.php?type=CR"> Liste des congés réfusés </a></p></center>
                              <!--<div class="liste">  <a href=""> Listes des demmandes refusées </a> <a href="">Listes des demmandes acceptées</a></div>-->
                                  
                 </div>

@@ -1,8 +1,8 @@
 #notif{
     background-color: #3498db;
-    width: 300px;
+    width: 350px;
     position: absolute;
-    top:50px;
+    top:60px;
     right: 100px;
     box-shadow: 0 1em 2em 0 rgba(0, 0, 0, 0.5);
     border-radius: 10px;
@@ -26,9 +26,7 @@
     border-radius: 10px;
 }
 .notshow{
-   height: fit-content; 
-   padding:10px;
-}
+   padding:10px;}
 .no_notif{
     color: white;
     padding: 10px;

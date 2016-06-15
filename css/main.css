@@ -13,33 +13,48 @@ body{
     margin: 0px;
     font-family: arvo normal400;
     }
+    ul{
+        margin: 0;
+        padding: 0;
+    }
+    ul li{
+        list-style-type: none;
+    }
+    a{
+        text-decoration: none;
+    }
 header{
     background-color: white;
     position: fixed;
     top: 0px;
 	width: 100%;
+    height: fit-content;
 	margin:0px auto;
     left:0px;
     z-index: 5;
     box-shadow: 0 .2em 1em 0 rgba(0, 0, 0, 0.3);
     display: flex;
+    box-sizing: border-box;
     justify-content: space-between;}
-a{
-    text-decoration: none;
-    color: black;}
 header nav ul{
+    list-style-type: none;
     display: flex;
-    list-style: none;
-    color: gray;}
-header nav ul li{
-    
-    padding: 0px 15px 0px 15px;
-    display: flex;
-    padding-top:5px;
-    color: black;}
-header nav ul li:hover a{
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    }
+header nav ul li a{
     color: #3498db;
-    cursor: pointer;}
+    text-decoration: none;
+    padding: 10px;
+    margin: 5px;
+    }
+header nav ul li:hover a{
+    border: 1px #3498db dashed;
+    cursor: pointer;
+    color: black;
+    }
 footer{
     background-color: white;
     height: 32px;

@@ -15,7 +15,16 @@
             <div id="page_content"><!-- debut page-content -->
                 <div id="left"><!-- debut left -->
                     <div class="card"><!-- debut card -->
-                        <img src="assets/images/profil_emp/<?php echo $_SESSION['mat_emp'] ?>.jpg" alt="" class="avatar card-user">
+                    <?php $photo = "assets/images/profil_emp/".$_SESSION['mat_emp'].".jpg";
+                    if(file_exists($photo)){
+                        echo '<img src='.$photo.' alt="" class="avatar card-user">';
+                    }
+                    else{
+                        echo '<img src="assets/images/profil_emp/default.jpg" alt="" class="avatar card-user" />';
+                    }
+                    
+                     ?>
+                        
                         <span class="card-category">EMPLOYE</span>
                         <div class="card-description"><!-- debut card-description -->
                             <p><h3><?php echo $_SESSION['nom_emp']." ".$_SESSION['pnom_emp']; ?></h3></p>
@@ -143,11 +152,10 @@
                                         <div id="panel1" class="panel active"><!-- debut panel1 -->
                                         <table align="center">
                                             <tr>
-                                                <td>N° Congé</td>
+                                                <td>#</td>
                                                 <td>Date Congé</td>
                                                 <td>Date depart</td>
                                                 <td>Date retour</td>
-                                                <td>Interimaire</td>
                                                 <td>Motif</td>
                                                 <td>Fiche</td>
                                             </tr>
@@ -157,7 +165,17 @@
                                                 $reqcong->execute(array($_SESSION['mat_emp']));
                                                 
                                                 while ($conginfo = $reqcong->fetch()){
-                                                            echo "<tr><td>".$conginfo["cod_dem"]."</td><td>".$conginfo["dat_dem"]."</td><td>".$conginfo["dat_deb_dem"]."</td><td>".$conginfo["dat_fin_dem"]."</td><td>".$conginfo["mat_int"]."</td><td>".$conginfo["lib_dem"]."</td><td class='bt_tab'><a href='notification.php?id=".$conginfo['cod_dem']."'> Consulter la fiche</a></td></tr>";
+                                                    
+                                                                $date = ucfirst(strftime('%A, le %d ',strtotime($conginfo["dat_dem"])));
+                                                                $date .= ucfirst(strftime('%B %Y ',strtotime($conginfo["dat_dem"])));
+                                                                
+                                                                $date1 = ucfirst(strftime('%A, le %d ',strtotime($conginfo["dat_deb_dem"])));
+                                                                $date1 .= ucfirst(strftime('%B %Y ',strtotime($conginfo["dat_deb_dem"])));
+                                                                
+                                                                $date2 = ucfirst(strftime('%A, le %d ',strtotime($conginfo["dat_fin_dem"])));
+                                                                $date2 .= ucfirst(strftime('%B %Y ',strtotime($conginfo["dat_fin_dem"])));
+                                                    
+                                                            echo "<tr><td>".$conginfo["cod_dem"]."</td><td>".$date."</td><td>".$date1."</td><td>".$date2."</td><td>".$conginfo["lib_dem"]."</td><td class='bt_tab'><a href='notification.php?id=".$conginfo['cod_dem']."'> Voir fiche</a></td></tr>";
                                                         }
                                                 ?>
                                         </table>
@@ -173,11 +191,21 @@
                                                 <td>Motif</td>
                                             </tr>
                                             <?php 
+                                            
                                                     // recuperation de toutes lesinformation d'absence de l'utilisateur
                                                     $reqab = $bdd->prepare("SELECT * FROM demande WHERE type_dem='ABSENCE' AND etat_dem=1");
                                                     $reqab->execute(array($_SESSION['mat_emp']));
                                                     while ($abinfo = $reqab->fetch()){
-                                                                echo "<tr><td>".$abinfo["cod_dem"]."</td><td>".$abinfo["dat_dem"]."</td><td>".$abinfo["dat_deb_dem"]."</td><td>".$abinfo["dat_fin_dem"]."</td><td>".$abinfo["mat_int"]."</td><td>".$abinfo["lib_dem"]."</td></tr>";
+                                                                $date = ucfirst(strftime('%A, le %d ',strtotime($abinfo["dat_dem"])));
+                                                                $date .= ucfirst(strftime('%B %Y ',strtotime($abinfo["dat_dem"])));
+                                                                
+                                                                $date1 = ucfirst(strftime('%A, le %d ',strtotime($abinfo["dat_deb_dem"])));
+                                                                $date1 .= ucfirst(strftime('%B %Y ',strtotime($abinfo["dat_deb_dem"])));
+                                                                
+                                                                $date2 = ucfirst(strftime('%A, le %d ',strtotime($abinfo["dat_fin_dem"])));
+                                                                $date2 .= ucfirst(strftime('%B %Y ',strtotime($abinfo["dat_fin_dem"])));
+                                                                
+                                                                echo "<tr><td>".$abinfo["cod_dem"]."</td><td>".$date."</td><td>".$date1."</td><td>".$date2."</td><td>".$abinfo["mat_int"]."</td><td>".$abinfo["lib_dem"]."</td></tr>";
                                                             }
                                             ?>
                                         </table>

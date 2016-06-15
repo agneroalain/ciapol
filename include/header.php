@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="css/main.css" media="screen"/>
-		<link rel="stylesheet" type="text/css" href="imprim_dem.css" media="print" />
+		<link rel="stylesheet" type="text/css" href="css/imprim_dem.css" media="print"/>
 		<meta charset="UTF-8"/>
 		<title>CIAPOL - Centre Ivoirien Anti Polution</title>
 		<script src='js/jquery-1.12.2.min.js'></script>
@@ -17,7 +17,9 @@
 	<body>
 		<header>
 				<img id="logo" src="assets/images/logo.png"/>
-				<?php if(isset($_SESSION['mat_emp']) AND !empty($_SESSION['mat_emp'])){ ?>
+				<?php if(isset($_SESSION['mat_emp']) AND !empty($_SESSION['mat_emp'])){
+					setlocale(LC_TIME, 'fr');
+					 ?>
 				<nav>
 					<ul>
 						<li><a href="interface.php">Mon compte</a></li>
@@ -46,7 +48,6 @@
 										
 										echo "<li class='not'><a href='notification.php'> HISTORIQUE DES NOTIFICATIONS </a></li>";
 										?>
-										
 							</ul>
 						</div>
 						<?php

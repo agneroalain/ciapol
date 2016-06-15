@@ -19,21 +19,31 @@ include('include/connectdb.php');
         <div id="gauche">
             <center>
             MINISTERE DE L'ENVIRONNEMENT, DE LA SALUBRITE URBAINE ET DU DEVELLOPEMENT DURABLE
+            <br />
             <hr/><hr/>
+            <br />
             <img src="assets/images/logo.png" class="ico"/><br />Centre Ivoirien Antipollution
+            <br />
             <hr/><hr/>
+            <br />
             Sous Direction des Affaires Administratives et Financières
             <hr/><hr/>
-            Service Ressources Humaines et Administration
+            Service Ressources Humaines et Administration<br /><br />
             <hr/><hr/>
         </div>
         <div id="droit">
             <center>
             REPUBLIQUE DE COTE D'IVOIRE
-            <hr /><hr />
+            <br /><br />
+            <hr /><hr /><br />
+            
+            <img src="assets/images/ivoir.png" class="ico"/><br /><br />
             Union - Discipline - Travail<br />
-            <img src="assets/images/ivoir.png" class="ico"/></center><br /></center>
+            </center><br /></center>
+            <br /><br /><br /><br />
+            <center>
             Abidjan le , <?php echo $deminfo['dat_dem']; ?>
+            </center>
         </div>
         
         <?php 
@@ -54,27 +64,44 @@ include('include/connectdb.php');
             $reqint = $bdd->prepare("SELECT nom_emp,pnom_emp,fonct_emp FROM employe WHERE mat_emp=?");
 			$reqint->execute(array($deminfo['mat_int']));
             $reqint = $reqint -> fetch();
+            
+            $reqnumser = $bdd->prepare("SELECT num_ser FROM jointure_emp_serv WHERE mat_emp=?");
+            $reqnumser -> execute (array($deminfo['mat_emp']));
+            $reqnumser = $reqnumser -> fetch();
+            
+            $reqser = $bdd -> prepare("SELECT lib_ser FROM service WHERE num_ser=?");
+            $reqser -> execute (array($reqnumser['num_ser']));
+            $reqser = $reqser -> fetch();
         ?>
         
     </div>
     N° ----- MINESUDD/CIAPOL/DIR/S/DAAF/SRH&F
     <div id="corps_notif">
         <center><h2>DEMANDE DE DEPART EN CONGE</h2></center>
-        Nom et Prénoms : <?php echo $emp['nom_emp']." ".$emp['pnom_emp']; ?> <br />
-        Fonction: <?php echo $emp['fonct_emp']; ?> Matricule: <?php echo $deminfo['mat_emp']; ?> <br />
-        Service: .................................... Motif: <?php echo $deminfo['lib_dem']; ?> <br /> 
-        Période de congé demandé: du <?php echo $deminfo['dat_deb_dem']; ?> au <?php echo $deminfo['dat_fin_dem']; ?> <br />
-        Date de retour du dernier congé : .................................................. <br />
-        Nombre de jours ouvrables : ................ soit ................ jours calendaires <br />
-        Adresse durant les congés : ........................................................ <br />
-        Nom de la personne devant assurer l'interim (éventuellement) : <?php echo $reqint['nom_emp']." ".$reqint['pnom_emp']; ?> <br />
+        <b>Nom et Prénoms :</b> <?php echo $emp['nom_emp']." ".$emp['pnom_emp']; ?> <br />
+        <b>Fonction:</b> <?php echo $emp['fonct_emp']; ?> <b>Matricule:</b> <?php echo $deminfo['mat_emp']; ?> <br />
+        <b>Service:</b> <?php echo $reqser['lib_ser']; ?> <b>Motif:</b> <?php echo $deminfo['lib_dem']; ?> <br /> 
+        <b>Période de congé demandé:</b> du <?php echo $deminfo['dat_deb_dem']; ?> au <?php echo $deminfo['dat_fin_dem']; ?> <br />
+        <b>Date de retour du dernier congé :</b> .................................................. <br />
+        <b>Nombre de jours ouvrables :</b> ................ <b>soit</b> ................ <b>jours calendaires</b> <br />
+        <b>Adresse durant les congés :</b> ........................................................ <br />
+        <b>Nom de la personne devant assurer l'interim (éventuellement) :</b> <?php echo $reqint['nom_emp']." ".$reqint['pnom_emp']; ?> <br />
         .................................................................................... <br />
-        Qualification : .............................. Fonction :  <?php echo $reqint['fonct_emp']; ?> <br />
-        <center>(Partie réservée au Service Ressources Humaines et Administration)</center><br />
-        Solde droit à congé : .............................................................. <br />
-        Solde droit à congé acquis : ....................................................... <br />
-        Nombre de jours déductibles des congés: ............................................ <br />
+        <b>Qualification :</b> .............................. <b>Fonction :</b>  <?php echo $reqint['fonct_emp']; ?> <br />
+        <center><b>(Partie réservée au Service Ressources Humaines et Administration)</b></center><br />
+        <b>Solde droit à congé :</b> .............................................................. <br />
+        <b>Solde droit à congé acquis :</b> ....................................................... <br />
+        <b>Nombre de jours déductibles des congés:</b> ............................................ <br />
+        <form>
+  <input id="impression" name="impression" type="button" onclick="imprimer_page()" value="Imprimer cette page" />
+</form>
+<script type="text/javascript">
+function imprimer_page(){
+  window.print();
+}
+</script>
     </div>
+    
 </div>
 
 

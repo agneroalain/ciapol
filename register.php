@@ -6,9 +6,7 @@
 		{
 			$getmat=intval($_SESSION['mat_emp']);
             include("include/header.php");
-	?>
-
-
+?>
 <div id="page_space"></div>
 <div id="cont_reg">
     		<div id="page_reg">
@@ -187,7 +185,6 @@
                             {
                                 echo "<option value=".$servinfo['num_ser'].">".$servinfo['lib_ser']."</option>";
                             }
-                            
                         ?>
                         </select>
                     </p>
@@ -195,68 +192,62 @@
                         <label for="">votre categorie :</label>
                         <select name="cod_cat_emp" id="contrat">
                             <?php
-                            $reqcat = $bdd->prepare('SELECT * FROM categorie');
-			                $reqcat->execute();
-			                while($catinfo = $reqcat->fetch())
-                            {
-                                echo "<option value=".$catinfo['cod_cat_emp'].">".$catinfo['lib_cat_emp']."</option>";
-                            }
-                            
-                        ?>
+                                $reqcat = $bdd->prepare('SELECT * FROM categorie');
+                                $reqcat->execute();
+                                while($catinfo = $reqcat->fetch())
+                                {
+                                    echo "<option value=".$catinfo['cod_cat_emp'].">".$catinfo['lib_cat_emp']."</option>";
+                                }
+                            ?>
                         </select>
                     </p>
                      <p>
                         <label for="">Photo de profil  :</label><input type="file" placeholder="" name="photo" />
+                        <div id="drop_zone" ondrop="drag_drop(event)" ondragover="return false"></div>
                     </p>
                     <p>
                         <label for="">Role de l'employé :</label>
                         <select name="role_id">
-                            <?php
-                                $reqrole = $bdd->prepare('SELECT * FROM role');
-			                $reqrole->execute();
-			                while($roleinfo = $reqrole->fetch())
-                            {
-                                echo "<option value=".$roleinfo['role_id'].">".$roleinfo['name']."</option>";
-                            }   
-                            ?>
+<?php
+    $reqrole = $bdd->prepare('SELECT * FROM role');
+    $reqrole->execute();
+    while($roleinfo = $reqrole->fetch())
+    {
+        echo "<option value=".$roleinfo['role_id'].">".$roleinfo['name']."</option>";
+    }   
+?>
                         </select>
                     </p>
                     <p>
                         <label for="">Mot de passe de l'employé</label><input type="password" name="mdp_emp"/>
-                     </p>
-                    
+                    </p>
                     <input type="submit" value="valider"/>
                 </form>
-               
             </div>
     </div>
-	<?php include("include/footer.php");
+    <script src="js/drag.js"></script>
+<?php include("include/footer.php");}
+if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])){
+    $tailleMax = 2097152;
+    $extensionsValides = array('jpg','jpeg','png');
+    if($_FILES['avatar']['size'] < $tailleMax){
+        $extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'],'.'),1));
+        if(in_array($extensionUpload,$extensionsValides)){
+            $chemin = "assets/images/profil_emp/".$_SESSION['mat_emp'].".".$extensionUpload;
+            $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'],$chemin);
+            if($resultat){                         
+            }
+            else {
+                $msg = "Erreur durant l'importation";
+            }
         }
-     ?>
-     <?php
-        if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])){
-            $tailleMax = 2097152;
-            $extensionsValides = array('jpg','jpeg','png');
-            if($_FILES['avatar']['size'] < $tailleMax){
-                $extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'],'.'),1));
-                if(in_array($extensionUpload,$extensionsValides)){
-                    $chemin = "assets/images/profil_emp/".$_SESSION['mat_emp'].".".$extensionUpload;
-                    $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'],$chemin);
-                    if($resultat){
-                       
-                                           
-                    }
-                    else {
-                        $msg = "Erreur durant l'importation";
-                    }
-                }
-                else{
-                    $msg = 'votre photo de profil n\'est pas au bon format';
-                }
-            }
-            else{
-                $msg = 'VOtre photo de profil ne doit pas depasser 2Mo';
-            }
+        else{
+            $msg = 'votre photo de profil n\'est pas au bon format';
+        }
+    }
+    else{
+        $msg = 'VOtre photo de profil ne doit pas depasser 2Mo';
+    }
 }
 if(isset($_POST['mat_emp']) AND !empty($_POST['mat_emp'])){
     $mat_emp = $_POST['mat_emp'];// Limiter le nombre de caratere pouvant etre inseré
@@ -286,7 +277,9 @@ if(isset($_POST['mat_emp']) AND !empty($_POST['mat_emp'])){
                                             $requete->execute(array($mat_emp,$nom_emp,$pnom_emp,$datnaiss_emp,$mail_emp,$adrpost_emp,$nat_emp,$cont_emp,$lieures_emp,$datemb_emp,$fonc_emp,$sitfam_emp,$cod_cat_emp,$mdp_emp,$role_id,$sex_emp));
                                             $req2 = $bdd->prepare('INSERT INTO jointure_emp_serv(mat_emp,num_ser) VALUES (?,?)');
                                             $req2->execute(array($mat_emp,$num_ser));
-                                            header('location:interface.php');
+                                            if($requete AND $req2){
+                                                echo '<div id="cover">Inscription effectuée</div>';
+                                            }
                                           }
                                           else {
                                               $msg =" vous devez definir un mot de passe pour l'employé !";
@@ -294,8 +287,7 @@ if(isset($_POST['mat_emp']) AND !empty($_POST['mat_emp'])){
                                }
                                else {
                                    $msg = " vous devez definir lesexe de l'employé !";
-                               }
-                                            
+                               }            
                        }
                        else{
                            $msg = " vous devez renseigner le champ mail de l'employé !";
@@ -316,17 +308,8 @@ if(isset($_POST['mat_emp']) AND !empty($_POST['mat_emp'])){
 }
 else {
     $msg = "Vous devez remplir le champ matricule de l'employé !";
-}
-     
-                                            
+}                                     
         }
         else {
              echo"<br/><br/><center><h1> Vous devez etre connecté pour acceder à cette page !</h1><br /> <a href='index.php'>Cliquez ici pour acceder à la page de connexion ! </a></center>";
-        }                                    
-                                            
-                                            
-                                            
-                                           
-                                           
-                                       
-                                ?>
+        }?>
