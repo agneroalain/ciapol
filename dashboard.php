@@ -15,12 +15,10 @@
                     <center><h3 class="titre">EMPLOYE</h3></center>
                        <table >
                             <tr>
-                                
                                 <td><img src="assets/ico/ajouter.png" class="ico" /></td> <td><a href="register.php">Ajouter un employé </a></td>
                             </tr>
                             <tr>
                                <td><img src="assets/ico/retirer.png" class="ico" /></td><td><a href="recherche.php">Liste des employés  </a></td>
-                                
                             </tr>
                             <!--<tr>
                                <td><img src="assets/ico/editer.png" class="ico" /></td> <td><a href="register.php">Editer les informations d'un employé </a></td>                              
@@ -50,7 +48,7 @@
                                     
                                     
                             </table>
-                            <center><p><a href="demande.php?type=CR"> Liste des congés réfusés </a></p></center>
+                            <div class="lien_dem"><p><a href="demande.php?type=CR"> Liste des congés réfusés </a></p><p><a href="demande.php?type=CA"> Liste des congés acceptés </a></p><p><a href="demande.php?type=ALLC"> Liste de tout les congés </a></p></div>
                              <!--<div class="liste">  <a href=""> Listes des demmandes refusées </a> <a href="">Listes des demmandes acceptées</a></div>-->
                                  
                 </div>
@@ -92,7 +90,7 @@
                                }
                               ?>
                        </table>
-                              <!--<div class="liste">  <a href=""> Listes des demmandes refusées </a> <a href="">Listes des demmandes acceptées</a></div>   -->
+                              <div class="lien_dem"><p><a href="demande.php?type=AR"> Liste des absences réfusées </a></p><p><a href="demande.php?type=AA"> Liste des absences acceptées </a></p><p><a href="demande.php?type=ALLA"> Liste de tout les absences </a></p></div>
                 </div>
                </div>
             </div>
