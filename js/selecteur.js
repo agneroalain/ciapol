@@ -1,23 +1,41 @@
 
-function selecteur(){
-      var select1 = document.getElementById('select1');
-      var selectValue2 = new Array;
-      var li = new Array;
-      switch(select1.value){
-          case 'Employe': 
-            selectValue2 = ['Nom','Prenom','Age','Fonction'];
-          break;
-          case 'Service': 
-            selectValue2 = ['Nom du service','Direction du service'];
-          break;
-          default:
-          break;
-      }
-      var select2 = document.createElement('select');
-      for(i=0; i<= selectValue2.length; i++){
-          li[i] = document.createElement('li');
-      }
-        select2.appendChild(li);
-        var rech = document.getElementById('rech');
-        rech.appendChild(select2);
-}
+var list = document.createElement ('select');
+var valTab = ['Employe','Direction','Service'];
+ var option = new Array;
+        for(i=0; i < valTab.length; i++){
+            option[i] = document.createElement('option');
+            option[i].innerHTML = valTab[i];
+            list.appendChild(option[i]);
+        }
+var rech = document.getElementById('rech');
+rech.appendChild(list);
+
+list.addEventListener('change', function() {
+    // On affiche le contenu de l'élément <option> ciblé par la propriété selectedIndex
+        var element = list.options[list.selectedIndex].innerHTML;
+        var last = document.getElementById('rech').lastChild.innerHTML;
+        
+        switch (element) {
+            case 'Service':
+                 var valTab = ['Nom du service','Numero du service'];
+                break;
+            case 'Direction':
+                 var valTab = ['Nom de de la direction','Numero de la direction'];
+                break;
+            case 'Employe':
+                    var valTab = ['Matricule de l\'employé','nom de l\'employé','Fonction de l\'employé' ];
+                break;
+        
+            default:
+                break;
+        }
+        
+        var liste2 = document.createElement('select');
+        var option = new Array;
+        for(i=0; i <= valTab.length; i++){
+            option[i] = document.createElement('option');
+            option[i].innerHTML = valTab[i];
+            liste2.appendChild(option[i]);
+        }
+        rech.appendChild(liste2);
+}, true);

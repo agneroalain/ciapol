@@ -6,7 +6,7 @@ session_start();
 <div id="rech">
     <div id="champ">
         <form action="#" method="post">
-            <select name="table">
+            <select id="list" name="table">
                 <option>Employé</option>
                 <option>Service</option>
                 <option>Direction</option>
