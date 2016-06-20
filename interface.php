@@ -17,7 +17,8 @@
                     <div class="card"><!-- debut card -->
                     <?php $photo = "assets/images/profil_emp/".$_SESSION['mat_emp'].".jpg";
                     if(file_exists($photo)){
-                        echo '<img src='.$photo.' alt="" class="avatar card-user">';
+                        // echo '<div style="background-image:url("'.$photo.'");" alt="" class="avatar card-user"></div>';
+                        echo '<div style="background-image:url(\''.$photo.'\');background-size:100%;" alt="" class="avatar card-user"></div>';
                     }
                     else{
                         echo '<img src="assets/images/profil_emp/default.jpg" alt="" class="avatar card-user" />';

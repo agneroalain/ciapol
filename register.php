@@ -227,14 +227,14 @@
     </div>
     <script src="js/drag.js"></script>
 <?php include("include/footer.php");}
-if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])){
+if(isset($_FILES['photo']) AND !empty($_FILES['photo']['name'])){
     $tailleMax = 2097152;
     $extensionsValides = array('jpg','jpeg','png');
-    if($_FILES['avatar']['size'] < $tailleMax){
-        $extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'],'.'),1));
+    if($_FILES['photo']['size'] < $tailleMax){
+        $extensionUpload = strtolower(substr(strrchr($_FILES['photo']['name'],'.'),1));
         if(in_array($extensionUpload,$extensionsValides)){
             $chemin = "assets/images/profil_emp/".$_SESSION['mat_emp'].".".$extensionUpload;
-            $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'],$chemin);
+            $resultat = move_uploaded_file($_FILES['photo']['tmp_name'],$chemin);
             if($resultat){                         
             }
             else {
@@ -278,7 +278,7 @@ if(isset($_POST['mat_emp']) AND !empty($_POST['mat_emp'])){
                                             $req2 = $bdd->prepare('INSERT INTO jointure_emp_serv(mat_emp,num_ser) VALUES (?,?)');
                                             $req2->execute(array($mat_emp,$num_ser));
                                             if($requete AND $req2){
-                                                echo '<div id="cover">Inscription effectuée</div>';
+                                                echo '<div id="cover">Inscription effectuée</div>'.$_FILES['photo']['tmp_name'];;
                                             }
                                           }
                                           else {
