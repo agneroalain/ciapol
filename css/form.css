@@ -1,0 +1,7 @@
+.p_no_scroll_form{
+    width: 250px;
+}
+#form_register{
+    display: flex;
+    justify-content: space-around;
+}

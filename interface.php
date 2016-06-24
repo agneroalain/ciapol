@@ -48,7 +48,13 @@
                                 $i=1;
                                 while ($fichierinfo = $reqfichier->fetch())
                                 {
-                                    echo "<tr><td align='center'><img class='ico' src='assets/ico/".substr($fichierinfo['ext_fichier'],1).".png' /><td align='center'>".$fichierinfo["type"]."</td></td><td class='bt_tab' align='center'><a href='liredoc.php?doc=".$fichierinfo['nom']."'>Cliquez ici pour consulter</a></td></tr>";
+                                    if(substr($fichierinfo['ext_fichier'],1 || $fichierinfo['ext_fichier'],1) == 'PDF'){ $ico = " <i class=\"fa fa-file-pdf-o fa-2x\"></i>";}elseif (substr($fichierinfo['ext_fichier'],1) == 'docx' || substr($fichierinfo['ext_fichier'],1) == 'doc') {
+                                       $ico = " <i class=\"fa fa-file-word-o fa-2x\"></i>";
+                                    }
+                                    else{
+                                        $ico = " <i class=\"fa fa-file-image-o fa-2x\"></i>";
+                                    }
+                                    echo "<tr><td align='center'> ".$ico."<td align='center'>".$fichierinfo["type"]."</td></td><td class='bt_tab' align='center'><a href='liredoc.php?doc=".$fichierinfo['nom']."'>Cliquez ici pour consulter</a></td></tr>";
                                     $i++;
                                 }
                             ?>
@@ -162,7 +168,7 @@
                                             </tr>
                                             <?php 
                                                 // recuperation de toutes les informations de conge de l'utilisateur
-                                                $reqcong = $bdd->prepare("SELECT * FROM demande WHERE type_dem='CONGE' AND etat_dem=1");
+                                                $reqcong = $bdd->prepare("SELECT * FROM demande WHERE type_dem='CONGE' AND mat_emp=? AND etat_dem=1");
                                                 $reqcong->execute(array($_SESSION['mat_emp']));
                                                 
                                                 while ($conginfo = $reqcong->fetch()){
@@ -194,7 +200,7 @@
                                             <?php 
                                             
                                                     // recuperation de toutes lesinformation d'absence de l'utilisateur
-                                                    $reqab = $bdd->prepare("SELECT * FROM demande WHERE type_dem='ABSENCE' AND etat_dem=1");
+                                                    $reqab = $bdd->prepare("SELECT * FROM demande WHERE type_dem='ABSENCE' AND mat_emp=? AND etat_dem=1");
                                                     $reqab->execute(array($_SESSION['mat_emp']));
                                                     while ($abinfo = $reqab->fetch()){
                                                                 $date = ucfirst(strftime('%A, le %d ',strtotime($abinfo["dat_dem"])));

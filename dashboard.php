@@ -15,10 +15,10 @@
                     <center><h3 class="titre">EMPLOYE</h3></center>
                        <table >
                             <tr>
-                                <td><img src="assets/ico/ajouter.png" class="ico" /></td> <td><a href="register.php">Ajouter un employé </a></td>
+                                <td><i class="fa fa-plus" aria-hidden="true"></i></td> <td><a href="register.php">Ajouter un employé </a></td>
                             </tr>
                             <tr>
-                               <td><img src="assets/ico/retirer.png" class="ico" /></td><td><a href="recherche.php">Liste des employés  </a></td>
+                               <td><i class="fa fa-list" aria-hidden="true"></i><td><a href="recherche.php">Liste des employés  </a></td>
                             </tr>
                             <!--<tr>
                                <td><img src="assets/ico/editer.png" class="ico" /></td> <td><a href="register.php">Editer les informations d'un employé </a></td>                              
@@ -58,15 +58,15 @@
                     <center><h3 class="titre">SERVICE</h3></center>
                        <table>
                             <tr>
-                                <td><img src="assets/ico/ajouter.png" class="ico" /></td> <td><a href="formserv.php">Ajouter un service </a></td>
+                                <td><i class="fa fa-plus" aria-hidden="true"></i></td><td><a href="formserv.php">Ajouter un service </a></td>
                                 
                             </tr>
                             <tr>
                                
-                                <td><img src="assets/ico/retirer.png" class="ico" /></td><td>Retirer un service </td>
+                                <td><i class="fa fa-minus" aria-hidden="true"></i></td><td>Retirer un service </td>
                             </tr>
                             <tr>
-                               <td><img src="assets/ico/editer.png" class="ico" /></td> <td>Editer les informations d'un service </td>
+                               <td><i class="fa fa-pencil" aria-hidden="true"></i> <td>Editer les informations d'un service </td>
                                 
                             </tr>
                        </table>

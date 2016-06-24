@@ -12,34 +12,49 @@
     		<div id="page_reg">
                 <center><h3 class="titre">INSCRIPTION</h3></center>
                 <form method="post" action="" enctype="multipart/form-data">
+                <div id="form_register">
                     <?php if(isset($msg)){
                         echo $msg;
                     }
                     ?>
-                    <p>
+                    <div>
+                    <p class="p_no_scroll_form">
                         <label for="">Matricule de l'employé :</label><input type="text" name="mat_emp"/>
                     </p>
-                    <p>
+                    <p class="p_no_scroll_form">
                         <label for="">Votre nom :</label><input type="text" placeholder="" name="nom_emp"/>
                     </p>
-                     <p>
+                     <p class="p_no_scroll_form">
                         <label for="">Vos prénoms :</label><input type="text" placeholder="" name="pnom_emp" />
                     </p>
-                    <p>
+                    <p class="p_no_scroll_form">
                         <label for="">Sexe :</label> M <input type="radio" name="sex_emp"/> F <input type="radio" name="sex_emp"/>
-                     <p>
+                    </p>
+                    <p class="p_no_scroll_form">
+                        <label for="">Votre contact :</label><input type="tel"  title='Phone Number (Format: +22599999999)' name="cont_emp" />
+                    </p>
+                    <p class="p_no_scroll_form">
+                        <label for="">Photo de profil  :</label><input type="file" placeholder="" name="photo" />
+                        <!--<div id="drop_zone" ondrop="drag_drop(event)" ondragover="return false"></div>-->
+                    </p>
+                    </div>
+                    <div>
+                    
+                     <p class="p_no_scroll_form">
                         <label for="">Votre date de naissance :</label><input type="date" name="datnaiss_emp" />
                     </p>
-                    <p>
+                    <p class="p_no_scroll_form">
                         <label for="">Votre adresse émail :</label><input type="text" placeholder="" name="mail_emp" />
                     </p>
-                    <p>
+                    <p class="p_no_scroll_form">
                         <label for="">votre adresse postale :</label><input type="text" placeholder="" name="adrpost_emp" />
                     </p>
-                     <p>
+                     <p class="p_no_scroll_form">
                         <label for="">Numéro de votre carte CNI</label><input type="text" placeholder="" name="numcni_emp" />
                     </p>
-                    <p>
+                    </div>
+                    <div>
+                    <p class="p_no_scroll_form">
                         <label for="">votre nationnalité :</label>
                         <select name="nat_emp" id="nationnalites">
                             <option>	Afghan	</option>
@@ -155,7 +170,7 @@
 
                         </select>
                     </p>
-                    <p>
+                    <p class="p_no_scroll_form">
                         <label for="sitfam_emp">Votre situation familiale</label>
                         <select name="sitfam_emp" id="sitfam_emp">
                             <option value="C">Celibataire</option>
@@ -163,19 +178,19 @@
                             <option value="MAE">Marié avec enfant</option>
                         </select>
                     </p>
-                    <p>
-                        <label for="">Votre contact :</label><input type="tel"  title='Phone Number (Format: +22599999999)' name="cont_emp" />
-                    </p>
-                    <p>
+                    
+                    <p class="p_no_scroll_form">
                         <label for="">Votre lieu de résidence :</label><input type="text" placeholder="" name="lieures_emp" />
                     </p>
-                    <p>
+                    <p class="p_no_scroll_form">
                         <label for="">La date de votre embauche :</label><input type="date" placeholder="" name="datemb_emp" />
                     </p>
-                    <p>
+                    </div>
+                    <div>
+                    <p class="p_no_scroll_form">
                         <label for="">Votre fonction :</label><input type="text" placeholder="" name="fonc_emp" />
                     </p>
-                    <p>
+                    <p class="p_no_scroll_form">
                         <label for="">Le service auquel vous ête afecté  :</label><select name="num_ser">
                         <?php
                             include("include/connectdb.php");
@@ -188,7 +203,7 @@
                         ?>
                         </select>
                     </p>
-                    <p>
+                    <p class="p_no_scroll_form">
                         <label for="">votre categorie :</label>
                         <select name="cod_cat_emp" id="contrat">
                             <?php
@@ -201,11 +216,8 @@
                             ?>
                         </select>
                     </p>
-                     <p>
-                        <label for="">Photo de profil  :</label><input type="file" placeholder="" name="photo" />
-                        <div id="drop_zone" ondrop="drag_drop(event)" ondragover="return false"></div>
-                    </p>
-                    <p>
+                     
+                    <p class="p_no_scroll_form">
                         <label for="">Role de l'employé :</label>
                         <select name="role_id">
 <?php
@@ -218,9 +230,11 @@
 ?>
                         </select>
                     </p>
-                    <p>
+                    <p class="p_no_scroll_form">
                         <label for="">Mot de passe de l'employé</label><input type="password" name="mdp_emp"/>
                     </p>
+                    </div>
+                    </div>
                     <input type="submit" value="valider"/>
                 </form>
             </div>
@@ -286,7 +300,7 @@ if(isset($_POST['mat_emp']) AND !empty($_POST['mat_emp'])){
                                           }
                                }
                                else {
-                                   $msg = " vous devez definir lesexe de l'employé !";
+                                   $msg = " vous devez definir le sexe de l'employé !";
                                }            
                        }
                        else{

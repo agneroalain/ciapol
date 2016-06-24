@@ -13,6 +13,7 @@
 		</script>
 		<script type="text/javascript" src="js/divcouliss.js">
 		</script>
+		<link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
 	</head>
 	<body>
 		<header>
@@ -25,7 +26,7 @@
 						<li><a href="interface.php">Mon compte</a></li>
 						<?php
 							if(isset($_SESSION['role_id'])){
-								if($_SESSION['role_id']){
+								if($_SESSION['role_id'] == 1){
 						?>
 						<li><a href="dashboard.php">Tableau de bord</a></li><?php } } ?>
 						<li><a onclick=" hidenot();">Notifications</a></li>

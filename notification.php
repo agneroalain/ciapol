@@ -109,7 +109,7 @@ function imprimer_page(){
     }
     else {
         
-			echo "<div id='notif_page'><ul>";	
+			echo "<div id='notif_page'><br/><ul>";	
 								 
 										$req = $bdd->prepare('SELECT * FROM notification WHERE mat_emp="'.$_SESSION["mat_emp"].'"');
 									
