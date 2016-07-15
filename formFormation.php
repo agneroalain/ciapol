@@ -12,26 +12,16 @@
 <div id="cont_reg">
     		<div id="page_reg">
                 
-                <form method="post" id="formService" class="colum" action="php/insertservice.php">
+                <form method="post" id="formFormation" action="php/insertservice.php" class="colum">
                 <center><h3 class="titre">INSCRIPTION SERVICE</h3></center>
                     <p>
-                        <label for="">Nom du service :</label><input type="text" name="lib_ser" placeholder="" />
+                        <label for="">Theme de la formation :</label><input type="text" name="lib_ser" placeholder="" />
                     </p>
                     <p>
-                        <label for="">Direction du service :</label>
+                        <label for="">Formateur :</label>
                         
                            
-                            <select name="cod_dir" id="nationnalites">
-                                 <?php
-                            
-                                $reqdir = $bdd->query("SELECT * FROM direction");
-                                
-                                while($donne = $reqdir->fetch()) {
-                                    echo "<option value=".$donne["cod_dir"].">".$donne['lib_dir']."</option>";
-                                }
-                                
-                                  ?>
-                            </select>
+                           <input type="text" />
                     </p>
                     
                     

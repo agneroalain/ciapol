@@ -249,7 +249,8 @@ if(isset($_FILES['photo']) AND !empty($_FILES['photo']['name'])){
         if(in_array($extensionUpload,$extensionsValides)){
             $chemin = "assets/images/profil_emp/".$_SESSION['mat_emp'].".".$extensionUpload;
             $resultat = move_uploaded_file($_FILES['photo']['tmp_name'],$chemin);
-            if($resultat){                         
+            if($resultat){
+                echo "<script> alert('inscription effectuée !');</script>";                         
             }
             else {
                 $msg = "Erreur durant l'importation";
@@ -292,7 +293,7 @@ if(isset($_POST['mat_emp']) AND !empty($_POST['mat_emp'])){
                                             $req2 = $bdd->prepare('INSERT INTO jointure_emp_serv(mat_emp,num_ser) VALUES (?,?)');
                                             $req2->execute(array($mat_emp,$num_ser));
                                             if($requete AND $req2){
-                                                echo '<div id="cover">Inscription effectuée</div>'.$_FILES['photo']['tmp_name'];;
+                                                echo '<div id="cover">Inscription effectuée</div>'.$_FILES['photo']['tmp_name'];
                                             }
                                           }
                                           else {

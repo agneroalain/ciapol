@@ -10,37 +10,56 @@ include('include/connectdb.php');
         $res = $resdem -> execute (array($_GET['id']));
         $deminfo = $resdem->fetch();  
         $updatenotif = $bdd -> query ("UPDATE notification SET etat_notif=1 WHERE cod_dem='".$_GET['id']."'");
+        
+        //requete pour l'avant dernier congé
+        $resdemAv = $bdd -> prepare ("SELECT * FROM demande WHERE mat_emp=?");
+        $resAv = $resdemAv -> execute (array($deminfo['mat_emp']));
+        $row = $resdemAv->rowCount() - 1;
     
     
 ?>
 </center>
-<div id="rapport_notif">
-    <div class="entete_notif">
-        <div id="gauche">
-            <center>
-            MINISTERE DE L'ENVIRONNEMENT, DE LA SALUBRITE URBAINE ET DU DEVELLOPEMENT DURABLE
-            <br />
-            <hr/><hr/>
-            <br />
-            <img src="assets/images/logo.png" class="ico"/><br />Centre Ivoirien Antipollution
-            <br />
-            <hr/><hr/>
-            <br />
-            Sous Direction des Affaires Administratives et Financières
-            <hr/><hr/>
-            Service Ressources Humaines et Administration<br /><br />
-            <hr/><hr/>
+
+<div id="rapport_notif"> <!-- Debut rapport_notif -->
+    <?php 
+    $i=1;
+    while($deminfoAv = $resdemAv->fetch()){
+        if($i == $row){
+            $dernier_cong = $deminfoAv['dat_fin_dem'];
+        }else{
+                $dernier_cong = "Premier Congé";
+            }
+            $i++;
+    }
+    $dat_deb = new dateTime($deminfo['dat_deb_dem']);
+    $dat_fin = new dateTime($deminfo['dat_fin_dem']);
+    $calendaire = $dat_fin->diff($dat_deb)->days;
+?>
+        <div class="entete_notif"><!-- Debut entete_notif -->
+          <div id="gauche"><!-- Debut gauche -->
+                <div class="col">
+                    <img src="assets/images/logo.png" class="ico"/>
+                </div>
+                <div class="col">
+                    <center>
+                    MINISTERE DE L'ENVIRONNEMENT, DE LA SALUBRITE URBAINE ET DU DEVELLOPEMENT DURABLE
+                    <br />
+                    <center/>= = = = = = = = = = =</center>Centre Ivoirien Antipollution
+                    <center/>= = = = = = = = = = =</center>
+                    Sous Direction des Affaires Administratives et Financières
+                    <center/>= = = = = = = = = = =</center>
+                    Service Ressources Humaines et Administration<br />
+                    <center/>= = = = = = = = = = =</center>
+                </div>
         </div>
-        <div id="droit">
+        <div id="droit"><!-- Debut droit -->
             <center>
             REPUBLIQUE DE COTE D'IVOIRE
-            <br /><br />
-            <hr /><hr /><br />
+            <center/>= = = = = = = = = = =</center>
             
-            <img src="assets/images/ivoir.png" class="ico"/><br /><br />
+            <img src="assets/images/ivoir.png" class="ico"/><br />
             Union - Discipline - Travail<br />
             </center><br /></center>
-            <br /><br /><br /><br />
             <center>
             Abidjan le , <?php echo $deminfo['dat_dem']; ?>
             </center>
@@ -73,38 +92,67 @@ include('include/connectdb.php');
             $reqser -> execute (array($reqnumser['num_ser']));
             $reqser = $reqser -> fetch();
         ?>
-        
     </div>
     N° ----- MINESUDD/CIAPOL/DIR/S/DAAF/SRH&F
-    <div id="corps_notif">
-        <center><h2>DEMANDE DE DEPART EN CONGE</h2></center>
-        <b>Nom et Prénoms :</b> <?php echo $emp['nom_emp']." ".$emp['pnom_emp']; ?> <br />
-        <b>Fonction:</b> <?php echo $emp['fonct_emp']; ?> <b>Matricule:</b> <?php echo $deminfo['mat_emp']; ?> <br />
-        <b>Service:</b> <?php echo $reqser['lib_ser']; ?> <b>Motif:</b> <?php echo $deminfo['lib_dem']; ?> <br /> 
-        <b>Période de congé demandé:</b> du <?php echo $deminfo['dat_deb_dem']; ?> au <?php echo $deminfo['dat_fin_dem']; ?> <br />
-        <b>Date de retour du dernier congé :</b> .................................................. <br />
-        <b>Nombre de jours ouvrables :</b> ................ <b>soit</b> ................ <b>jours calendaires</b> <br />
-        <b>Adresse durant les congés :</b> ........................................................ <br />
-        <b>Nom de la personne devant assurer l'interim (éventuellement) :</b> <?php echo $reqint['nom_emp']." ".$reqint['pnom_emp']; ?> <br />
-        .................................................................................... <br />
-        <b>Qualification :</b> .............................. <b>Fonction :</b>  <?php echo $reqint['fonct_emp']; ?> <br />
-        <center><b>(Partie réservée au Service Ressources Humaines et Administration)</b></center><br />
-        <b>Solde droit à congé :</b> .............................................................. <br />
-        <b>Solde droit à congé acquis :</b> ....................................................... <br />
-        <b>Nombre de jours déductibles des congés:</b> ............................................ <br />
-        <form>
-  <input id="impression" name="impression" type="button" onclick="imprimer_page()" value="Imprimer cette page" />
-</form>
-<script type="text/javascript">
-function imprimer_page(){
-  window.print();
-}
-</script>
-    </div>
+ <?php   
+        $nbDay = 0;
+    foreach( new DatePeriod(
+            $dat_deb,
+            new DateInterval('P1D'),
+            $dat_fin
+        ) as $oDT)
+    {
+        //http://www.php.net/manual/fr/datetime.format.php
+        //http://www.php.net/manual/fr/function.date.php
+        $numCurrentDay = $oDT -> format('N');
+        if (($numCurrentDay != '6') &&
+            ($numCurrentDay != '7'))
+        {
+            ++ $nbDay;
+        }
+    }
     
-</div>
+?>
+    
+    <div id="filigrane">
+        CIAPOL
+    </div>
+    <div id="corps_notif"><!-- Debut corps_notif -->
+        <br />
+        <u><center><h2 class='titre_dem'>DEMANDE DE DEPART EN CONGE</h2></center></u>
+        <b>Nom et Prénoms :&ensp;</b> <?php echo $emp['nom_emp']." ".$emp['pnom_emp']; ?> <br />
+        <b>Fonction:&ensp;</b> <?php echo $emp['fonct_emp']; ?> &ensp;&ensp; <b>Matricule:&ensp;</b> <?php echo $deminfo['mat_emp']; ?> <br />
+        <b>Service:&ensp;</b> <?php echo $reqser['lib_ser']; ?> &ensp;&ensp;<b>Motif:</b> <?php echo $deminfo['lib_dem']; ?> <br /> 
+        <b>Période de congé demandé: &ensp;</b> du <?php echo $deminfo['dat_deb_dem']; ?> au <?php echo $deminfo['dat_fin_dem']; ?> <br />
+        <b>Date de retour du dernier congé :&ensp;</b> <?php echo $dernier_cong; ?><br />
+        <b>Nombre de jours ouvrables :&ensp;</b><?php echo $nbDay;  ?><b>&ensp;soit&ensp;</b> <?php echo $calendaire;  ?> <b>&ensp;jours calendaires</b> <br />
+        <b>Adresse durant les congés :&ensp;</b><?php echo $deminfo['adr_cong']; ?><br />
+        <b>Nom de la personne devant assurer l'interim (éventuellement) :&ensp;</b> <?php echo $reqint['nom_emp']." ".$reqint['pnom_emp']; ?> <br />
+        <b>Qualification :&ensp;</b> .............................. &ensp;&ensp;<b>Fonction :&ensp;</b>  <?php echo $reqint['fonct_emp']; ?> <br />
+        <center><b>(Partie réservée au Service Ressources Humaines et Administration)</b></center><br />
+        <b>Solde droit à congé :&ensp;</b> .............................................................. <br />
+        <b>Solde droit à congé acquis :&ensp;</b> ....................................................... <br />
+        <b>Nombre de jours déductibles des congés:&ensp;</b> ............................................ <br />
+        <div class="footer_demmande"><!-- Debut footer_demmande -->
+            <div class="row_foot">
+                <div class="col_foot">
+                    <p><center>Date et signature du demandeur</center></p>
+                    <p><center>Date et signature du Chef des Ressources Humaines et Formation</center></p>
+                </div>
+                <div class="col_foot">
+                    <p><center>Date et Signature du Supérieur Hiérarchique</center></p>
+                    <p><center>Date et signature du Sous Directeur des Affaires Administratives et Financière</center></p>
+                </div>
+            </div>
+        </div>
+        <div class="bt_imprim"></div>
+        <form>
+            <input id="impression" name="impression" type="button" onclick="imprimer_page()" value="Imprimer cette page" />
+        </form>
+        <br/><br/><br/><br/>
+    </div>
 
-
+</div> <!-- fi -->
 <?php 
     }
     else {
@@ -134,3 +182,8 @@ function imprimer_page(){
         }
  ?>	</ul>
 						</div>
+                        <script type="text/javascript">
+function imprimer_page(){
+  window.print();
+}
+</script>

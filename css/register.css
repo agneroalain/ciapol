@@ -1,6 +1,6 @@
 #page_reg{
     background-color:#FFF;
-    width: 90%;
+    width: fit-content;
     border-radius:30px;
     overflow: hidden;
     padding: 20px;}

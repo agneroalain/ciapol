@@ -40,7 +40,7 @@ session_start();
                                 <?php 
                                     include("include/connectdb.php");
                                     // recuperation de toutes lesinformation de congé de l'utilisateur
-                                    $reqcong = $bdd->prepare("SELECT * FROM demande WHERE etat_dem=? AND type_dem=? AND dat_deb_dem>2016-06-15");
+                                    $reqcong = $bdd->prepare("SELECT * FROM demande WHERE etat_dem=? AND type_dem=? AND dat_deb_dem>".date('Ymj')."");
                                     $reqcong->execute(array(1,'CONGE'));
                                     
                                     while ($conginfo = $reqcong->fetch())
@@ -77,6 +77,7 @@ session_start();
                                             $color = 'red';
                                         }else{
                                             $etat_dem = 'EN ATTENTE';
+                                            $color ='green';
                                         }
                                         echo "<form method='post' action='php/validcong.php?cod=".$conginfo['cod_dem']."'><tr style='color:".$color."'><td>".$conginfo["cod_dem"]."</td><td>".$conginfo["dat_dem"]."</td><td>".$conginfo["dat_deb_dem"]." au ".$conginfo["dat_fin_dem"]."</td><td>".$conginfo["mat_int"]."</td><td>".$conginfo["lib_dem"]."</td><td>".$etat_dem."</td></tr></form>";
                                     }

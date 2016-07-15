@@ -4,20 +4,22 @@
     margin: auto;
     margin-top: 20px;
     padding:10px;}
-#dash_emp{
+#dash_400{
     border: 0.5px solid black;
     width: 400px;
     box-shadow: 0 1em 2em 0 rgba(0, 0, 0, 0.1);
-    height: fit-content;}
+    height: fit-content;
+    margin: 10px;}
 #dash_cong{
     border: 0.5px solid black;
-    width :66%;
     box-shadow: 0 1em 2em 0 rgba(0, 0, 0, 0.1);
-    min-width: 400px;}
+    min-width: 400px;
+    width: 900px;
+    margin: 10px;}
 #dash_abs{
     border: 0.5px solid black;
     box-shadow: 0 1em 2em 0 rgba(0, 0, 0, 0.1);
-      width :66%;}
+    margin: 10px;}
 .flex{
     display: flex;
     justify-content: space-between;
@@ -28,3 +30,11 @@
 .liste{
     display: flex;
     justify-content: space-around;}
+table input[type='submit']{
+    margin: 0;
+    padding: 5px 10px 5px 10px;
+    font-size: 12px;
+}
+#dash_cong table td{
+        background-color: #F1FFFB;
+    }

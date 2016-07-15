@@ -5,3 +5,17 @@
     display: flex;
     justify-content: space-around;
 }
+.colum{
+    display: flex;
+    flex-direction: column;
+}
+.colum p{
+    display: flex;
+    flex-direction: column;
+}
+#formFormation{
+    width: 600px;
+}
+#formService{
+    width: 600px;
+}

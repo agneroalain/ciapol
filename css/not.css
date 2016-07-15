@@ -1,6 +1,6 @@
 #notif{
     background-color: #3498db;
-    width: 350px;
+    width: 300px;
     position: absolute;
     top:60px;
     right: 100px;
@@ -13,10 +13,19 @@
     background-color: white;
     color: #222;
     margin-bottom:5px;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 10px;
     display: flex;
     justify-content: space-around;
+}
+.not:hover{
+    background-color: #F1FFFB;
+}
+#notif a{
+    color: white;
+}
+#notif a:hover{
+    color: #222;
 }
 #notif ul{
     margin: 0px;
@@ -26,7 +35,7 @@
     border-radius: 10px;
 }
 .notshow{
-   padding:10px;}
+   padding:5px;}
 .no_notif{
     color: white;
     padding: 10px;
@@ -52,7 +61,7 @@
     box-shadow: 0 1em 2em 0 rgba(0, 0, 0, 0.5);
 }
 .entete_notif{
-    display: flex;
+    display: none;
     justify-content: space-between;
 }
 #gauche{
@@ -68,4 +77,10 @@
 #notif_page .not:hover{
     background-color: #222;
     color: white;
+}
+.footer_demmande{
+    display: none;
+}
+.bt_imprim{
+    height: 50px;
 }

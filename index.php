@@ -48,7 +48,7 @@ if(isset($_POST["formco"]))
 		<?php if(isset($_SESSION['mat_emp']) AND !empty($_SESSION['mat_emp'])){ echo "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 		<center><h1><font color='white'>VOUS ETE CONNECTE A VOTRE ESPACE EMPLOYE CIAPOL</font></h1></center>";}else{ ?>
 		<div id="contenu">
-			<form method="POST">
+			<form method="POST" class="colum">
 				<?php
 					if(isset($erreur))
 					{

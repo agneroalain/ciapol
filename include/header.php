@@ -1,9 +1,13 @@
+
+<?php
+	header('Content-type: text/html; charset=UTF-8');
+?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="css/main.css" media="screen"/>
 		<link rel="stylesheet" type="text/css" href="css/imprim_dem.css" media="print"/>
-		<meta charset="UTF-8"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>CIAPOL - Centre Ivoirien Anti Polution</title>
 		<script src='js/jquery-1.12.2.min.js'></script>
 		<script src="js/tab.js"></script>
@@ -47,7 +51,7 @@
 											echo "<div class='no_notif'/><center>Aucune notification pour l'instant !</center></div>";
 										}
 										
-										echo "<li class='not'><a href='notification.php'> HISTORIQUE DES NOTIFICATIONS </a></li>";
+										echo "<a href='notification.php'> Historique des notifications </a>";
 										?>
 							</ul>
 						</div>

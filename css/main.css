@@ -233,6 +233,9 @@ td{
     .bt_tab:hover{
         background-color: #97D6FB;
     }
+    table{
+        text-align: center;
+    }
 #doc{
     margin-top:50px;
     height: 600px;

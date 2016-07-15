@@ -127,13 +127,10 @@
                                                 <p> <label for="absint" class="labloc"/>Nom de la perssonne devant assurer l'interime : </label> 
                                                 <select name="absint" id="absint">
                                                     <?php
-                                                    
                                                         $reqdir = $bdd->query("SELECT * FROM employe");
-                                                        
                                                         while($donne = $reqdir->fetch()) {
                                                             echo "<option value=".$donne["mat_emp"].">".$donne['nom_emp']." ".$donne["pnom_emp"]."</option>";
                                                         }
-                                                        
                                                     ?>      
                                                 </select>  </p>
                                                 <p><input type="submit" name="demandeabs" value="Envoyer la demande"/></p>
@@ -141,7 +138,28 @@
                                         </div><!-- fin div2  -->
                                         <h3 class="rub"  onclick="return false" onmousedown="choix('div3');">DEMANDE DE FORMATION</h3>
                                         <div class="bloc" id="div3" ><!-- debut div3 -->
-                                           
+                                            <form action="">
+                                                <table>
+                                                    <tr>
+                                                        <td>Date</td>
+                                                        <td>Thème</td>
+                                                        <td>Participer</td>
+                                                    </tr>   
+                                                       
+                                                <?php
+                                                $reqform = $bdd->prepare("SELECT * FROM formation WHERE etat_form=?");
+                                                $reqform->execute(array(0));
+                                                while($forminfo = $reqform -> fetch()){
+                                                    $date = ucfirst(strftime('%A, le %d ',strtotime($forminfo["dat_deb_form"])));
+                                                                $date .= ucfirst(strftime('%B %Y ',strtotime($forminfo["dat_deb_form"])));
+                                                    echo utf8_decode("<tr><td>".$date."</td><td><label>".$forminfo['them_form']."</label></td><td><input type='checkbox' value='' name=''/></td></tr>");
+                                                }
+                                                ?>
+                                                <tr>
+                                                    <td colspan="3"><input type="submit" value="valider"/></td>
+                                                </tr>
+                                                </table>
+                                            </form>
                                         </div><!-- fin div3  -->
                                     </center>
                                 </div><!-- fin interface  -->
@@ -168,9 +186,8 @@
                                             </tr>
                                             <?php 
                                                 // recuperation de toutes les informations de conge de l'utilisateur
-                                                $reqcong = $bdd->prepare("SELECT * FROM demande WHERE type_dem='CONGE' AND mat_emp=? AND etat_dem=1");
-                                                $reqcong->execute(array($_SESSION['mat_emp']));
-                                                
+                                                $reqcong = $bdd->prepare("SELECT * FROM demande WHERE type_dem='CONGE' AND mat_emp=? AND etat_dem=?");
+                                                $reqcong->execute(array($_SESSION['mat_emp'],1));
                                                 while ($conginfo = $reqcong->fetch()){
                                                     
                                                                 $date = ucfirst(strftime('%A, le %d ',strtotime($conginfo["dat_dem"])));
@@ -182,7 +199,7 @@
                                                                 $date2 = ucfirst(strftime('%A, le %d ',strtotime($conginfo["dat_fin_dem"])));
                                                                 $date2 .= ucfirst(strftime('%B %Y ',strtotime($conginfo["dat_fin_dem"])));
                                                     
-                                                            echo "<tr><td>".$conginfo["cod_dem"]."</td><td>".$date."</td><td>".$date1."</td><td>".$date2."</td><td>".$conginfo["lib_dem"]."</td><td class='bt_tab'><a href='notification.php?id=".$conginfo['cod_dem']."'> Voir fiche</a></td></tr>";
+                                                            echo "<tr><td>".$conginfo["cod_dem"]."</td><td>".$date."</td><td>".$date1."</td><td>".$date2."</td><td>".$conginfo["lib_dem"]."</td><td class='bt_tab'><a href='notification.php?id=".$conginfo['cod_dem']."'> <i class='fa fa-file-o' aria-hidden='true'></i></a></td></tr>";
                                                         }
                                                 ?>
                                         </table>
