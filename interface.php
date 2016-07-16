@@ -88,6 +88,9 @@
                                         <h3 class="titre">INTERFACE</h3>
                                         <?php if(isset($_GET['errcong'])){
                                             echo "<span style='color:red'><i>".$_GET['errcong']."</i></span>";
+                                        }
+                                        if(isset($_GET['msgCong'])){
+                                            echo "<span style='color:blue'><i>".$_GET['msgCong']."</i></span>";
                                         } ?>
                                         <h3 class="rub"  onclick="return true" onmousedown="choix('div1');">DEMANDE DE DEPART EN CONGE </h3>
                                         <div class="bloc" id="div1" ><!-- debut div1 -->

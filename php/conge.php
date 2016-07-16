@@ -9,13 +9,25 @@
         $dat_cong = date('Ymd');// recuperer la date d'aujourd'hui
         $adr = $_POST['congadr'];
         $etat = 0;
+        //determinons si le nombre de jours restant est suffisant 
+        $reqemp = $bdd -> prepare (" SELECT * FROM employe WHERE mat_emp=?");
+        $empinfo = $reqemp->execute(array($_SESSION['mat_emp']));
+        $empinfo = $reqemp->fetch();
+        $nbJr = $empinfo['sold_cong_emp'];
         if(strtotime($dat_dep_cong) >= strtotime($dat_fin_cong)) 
         { 
                 header('location:../interface.php?errcong="Verifier la postériorité de vos date de depart et de retour svp !"'); 
         }
         else {
-                $requete = $bdd->prepare('INSERT INTO demande (type_dem, dat_deb_dem, dat_fin_dem, lib_dem, mat_emp, mat_int, dat_dem,adr_cong, etat_dem) VALUES (?, ?, ?, ?,?, ?, ?, ?,?)');
-                $requete->execute(array('CONGE', $dat_dep_cong,$dat_fin_cong,$obs_cong,$mat_emp,$cong_int,$dat_cong,$adr,$etat));
+                if($nbJr < 0 ){
+                        header('location:../interface.php?errcong="Nombre de jours restant insuffisant pour autoriser cette demande"');
+                }
+                else {
+                        $requete = $bdd->prepare('INSERT INTO demande (type_dem, dat_deb_dem, dat_fin_dem, lib_dem, mat_emp, mat_int, dat_dem,adr_cong, etat_dem) VALUES (?, ?, ?, ?,?, ?, ?, ?,?)');
+                        $requete->execute(array('CONGE', $dat_dep_cong,$dat_fin_cong,$obs_cong,$mat_emp,$cong_int,$dat_cong,$adr,$etat));
+                        header('location:../interface.php?msgCong="Demande de congé envoyée"');
+                }
+                
 // $header = "MIME-Version: 1.0\r\n";
 // $header.='From:"Ciapol.com"<agneroalainphoto@gmail.com>'."\n";
 // $header.='Content-Type:text/html; charset="utf-8'."\n";
@@ -34,6 +46,6 @@
 //         echo "erreur dans l'envoi du mail !";
 //         var_dump($test);
 // }
-              header('location:../interface.php');
+              
         }
 ?>

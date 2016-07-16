@@ -149,7 +149,7 @@
                             
                             while ($conginfo = $reqcong->fetch())
                             {
-                                echo "<form method='post' action='php/validcong.php?cod=".$conginfo['cod_dem']."'><tr><td>".$conginfo["cod_dem"]."</td><td>".$conginfo["dat_dem"]."</td><td>".$conginfo["dat_deb_dem"]." au ".$conginfo["dat_fin_dem"]."</td><!-- <td>".$conginfo["mat_int"]."</td> --><td>".$conginfo["lib_dem"]."</td><td><input type='checkbox' name='".$conginfo['cod_dem']."ded'/></td><td><input type='radio' name=".$conginfo['cod_dem']." value='1'/></td><td><input type='radio' name=".$conginfo['cod_dem']." value='2'/></td><td><input type='submit' value='OK' name='dem_at_cong' class='sub   table_bt'/></td></tr></form>";
+                                echo "<form method='post' action='php/validcong.php?cod=".$conginfo['cod_dem']."'><tr><td>".$conginfo["cod_dem"]."</td><td>".$conginfo["dat_dem"]."</td><td>".$conginfo["dat_deb_dem"]." au ".$conginfo["dat_fin_dem"]."</td><!-- <td>".$conginfo["mat_int"]."</td> --><td>".$conginfo["lib_dem"]."</td><td><input type='checkbox' name='ded'/></td><td><input type='radio' name=".$conginfo['cod_dem']." value='1'/></td><td><input type='radio' name=".$conginfo['cod_dem']." value='2'/></td><td><input type='submit' value='OK' name='dem_at_cong' class='sub   table_bt'/></td></tr></form>";
                             }
                         ?>         
                     </table>

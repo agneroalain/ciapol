@@ -28,7 +28,7 @@
                         <label for="">Vos prénoms :</label><input type="text" placeholder="" name="pnom_emp" />
                     </p>
                     <p class="p_no_scroll_form">
-                        <label for="">Sexe :</label> M <input type="radio" name="sex_emp"/> F <input type="radio" name="sex_emp"/>
+                        <label for="">Sexe :</label> M <input type="radio" value="M" name="sex_emp"/> F <input type="radio" value="F" name="sex_emp"/>
                     </p>
                     <p class="p_no_scroll_form">
                         <label for="">Votre contact :</label><input type="tel"  title='Phone Number (Format: +22599999999)' name="cont_emp" />
@@ -288,8 +288,9 @@ if(isset($_POST['mat_emp']) AND !empty($_POST['mat_emp'])){
                                             $cod_cat_emp = $_POST['cod_cat_emp'];
                                             $num_ser = $_POST['num_ser'];
                                             $role_id = $_POST['role_id'];
-                                             $requete = $bdd->prepare('INSERT INTO employe(mat_emp,nom_emp, pnom_emp, datnaiss_emp, mail_emp, adrpost_emp, nat_emp, cont_emp, lieures_emp, datemb_emp, fonct_emp, sitfam_emp, cod_cat_emp,mdp_emp,role_id,sex_emp) VALUES (?,?,?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?,?,?,?)');
-                                            $requete->execute(array($mat_emp,$nom_emp,$pnom_emp,$datnaiss_emp,$mail_emp,$adrpost_emp,$nat_emp,$cont_emp,$lieures_emp,$datemb_emp,$fonc_emp,$sitfam_emp,$cod_cat_emp,$mdp_emp,$role_id,$sex_emp));
+                                            $sold_cong_emp = 30;
+                                             $requete = $bdd->prepare('INSERT INTO employe(mat_emp,nom_emp, pnom_emp, datnaiss_emp, mail_emp, adrpost_emp, nat_emp, cont_emp, lieures_emp, datemb_emp, fonct_emp, sitfam_emp, cod_cat_emp,mdp_emp,role_id,sex_emp,sold_cong_emp) VALUES (?,?,?,?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?,?,?,?)');
+                                            $requete->execute(array($mat_emp,$nom_emp,$pnom_emp,$datnaiss_emp,$mail_emp,$adrpost_emp,$nat_emp,$cont_emp,$lieures_emp,$datemb_emp,$fonc_emp,$sitfam_emp,$cod_cat_emp,$mdp_emp,$role_id,$sex_emp,$sold_cong_emp));
                                             $req2 = $bdd->prepare('INSERT INTO jointure_emp_serv(mat_emp,num_ser) VALUES (?,?)');
                                             $req2->execute(array($mat_emp,$num_ser));
                                             if($requete AND $req2){
