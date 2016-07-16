@@ -9,10 +9,14 @@ if(isset($_SESSION['mat_emp']))
             <h3 class="titre">Modifier votre mot de passe</h3>
             <div id="newmdp_cont">
                 <form action="#" method="post">
-                    <label for="">Saisissez le nouveau mot de passe :</label>
-                    <input type="password" name="new_pwd"/>
-                    <label for="">Confirmez le nouveau mot de passe :</label>
-                    <input type="password" name="new_pwd_conf"/>
+                    <p>
+                        <label for="">Saisissez le nouveau mot de passe :</label>
+                        <input type="password" name="new_pwd"/>
+                    </p>
+                    <p>
+                        <label for="">Confirmez le nouveau mot de passe :</label>
+                        <input type="password" name="new_pwd_conf"/>
+                    </p>
                     <input type="submit" value="Modifier"/>
                 </form>
             </div>

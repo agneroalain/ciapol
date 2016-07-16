@@ -61,7 +61,7 @@ include('include/connectdb.php');
             Union - Discipline - Travail<br />
             </center><br /></center>
             <center>
-            Abidjan le , <?php echo $deminfo['dat_dem']; ?>
+            Abidjan le , <?= $deminfo['dat_dem']; ?>
             </center>
         </div>
         
@@ -120,19 +120,19 @@ include('include/connectdb.php');
     <div id="corps_notif"><!-- Debut corps_notif -->
         <br />
         <u><center><h2 class='titre_dem'>DEMANDE DE DEPART EN CONGE</h2></center></u>
-        <b>Nom et Prénoms :&ensp;</b> <?php echo $emp['nom_emp']." ".$emp['pnom_emp']; ?> <br />
-        <b>Fonction:&ensp;</b> <?php echo $emp['fonct_emp']; ?> &ensp;&ensp; <b>Matricule:&ensp;</b> <?php echo $deminfo['mat_emp']; ?> <br />
-        <b>Service:&ensp;</b> <?php echo $reqser['lib_ser']; ?> &ensp;&ensp;<b>Motif:</b> <?php echo $deminfo['lib_dem']; ?> <br /> 
-        <b>Période de congé demandé: &ensp;</b> du <?php echo $deminfo['dat_deb_dem']; ?> au <?php echo $deminfo['dat_fin_dem']; ?> <br />
-        <b>Date de retour du dernier congé :&ensp;</b> <?php echo $dernier_cong; ?><br />
-        <b>Nombre de jours ouvrables :&ensp;</b><?php echo $nbDay;  ?><b>&ensp;soit&ensp;</b> <?php echo $calendaire;  ?> <b>&ensp;jours calendaires</b> <br />
-        <b>Adresse durant les congés :&ensp;</b><?php echo $deminfo['adr_cong']; ?><br />
-        <b>Nom de la personne devant assurer l'interim (éventuellement) :&ensp;</b> <?php echo $reqint['nom_emp']." ".$reqint['pnom_emp']; ?> <br />
-        <b>Qualification :&ensp;</b> .............................. &ensp;&ensp;<b>Fonction :&ensp;</b>  <?php echo $reqint['fonct_emp']; ?> <br />
+        <b>Nom et Prénoms :&ensp;</b> <?= $emp['nom_emp']." ".$emp['pnom_emp']; ?> <br />
+        <b>Fonction:&ensp;</b> <?= $emp['fonct_emp']; ?> &ensp;&ensp; <b>Matricule:&ensp;</b> <?= $deminfo['mat_emp']; ?> <br />
+        <b>Service:&ensp;</b> <?= $reqser['lib_ser']; ?> &ensp;&ensp;<b>Motif:</b> <?= $deminfo['lib_dem']; ?> <br /> 
+        <b>Période de congé demandé: &ensp;</b> du <?= $deminfo['dat_deb_dem']; ?> au <?= $deminfo['dat_fin_dem']; ?> <br />
+        <b>Date de retour du dernier congé :&ensp;</b> <?= $dernier_cong; ?><br />
+        <b>Nombre de jours ouvrables :&ensp;</b><?= $nbDay;  ?><b>&ensp;soit&ensp;</b> <?= $calendaire;  ?> <b>&ensp;jours calendaires</b> <br />
+        <b>Adresse durant les congés :&ensp;</b><?= $deminfo['adr_cong']; ?><br />
+        <b>Nom de la personne devant assurer l'interim (éventuellement) :&ensp;</b> <?= $reqint['nom_emp']." ".$reqint['pnom_emp']; ?> <br />
+        <b>Qualification :&ensp;</b> .............................. &ensp;&ensp;<b>Fonction :&ensp;</b>  <?= $reqint['fonct_emp']; ?> <br />
         <center><b>(Partie réservée au Service Ressources Humaines et Administration)</b></center><br />
-        <b>Solde droit à congé :&ensp;</b> .............................................................. <br />
-        <b>Solde droit à congé acquis :&ensp;</b> ....................................................... <br />
-        <b>Nombre de jours déductibles des congés:&ensp;</b> ............................................ <br />
+        <b>Solde droit à congé :&ensp;</b> <?= $deminfo['sold_cong']; ?> <br />
+        <b>Solde droit à congé acquis :&ensp;</b> <?= 30 - $deminfo['sold_cong']; ?> <br />
+        <b>Nombre de jours déductibles des congés:&ensp;</b> <?= $nbDay;  ?> <br />
         <div class="footer_demmande"><!-- Debut footer_demmande -->
             <div class="row_foot">
                 <div class="col_foot">

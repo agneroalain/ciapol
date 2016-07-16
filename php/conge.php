@@ -23,8 +23,8 @@
                         header('location:../interface.php?errcong="Nombre de jours restant insuffisant pour autoriser cette demande"');
                 }
                 else {
-                        $requete = $bdd->prepare('INSERT INTO demande (type_dem, dat_deb_dem, dat_fin_dem, lib_dem, mat_emp, mat_int, dat_dem,adr_cong, etat_dem) VALUES (?, ?, ?, ?,?, ?, ?, ?,?)');
-                        $requete->execute(array('CONGE', $dat_dep_cong,$dat_fin_cong,$obs_cong,$mat_emp,$cong_int,$dat_cong,$adr,$etat));
+                        $requete = $bdd->prepare('INSERT INTO demande (type_dem, dat_deb_dem, dat_fin_dem, lib_dem, mat_emp, mat_int, dat_dem,adr_cong, etat_dem, sold_cong) VALUES (?, ?, ?, ?, ?,?, ?, ?, ?,?)');
+                        $requete->execute(array('CONGE', $dat_dep_cong,$dat_fin_cong,$obs_cong,$mat_emp,$cong_int,$dat_cong,$adr,$etat, $nbJr));
                         header('location:../interface.php?msgCong="Demande de congé envoyée"');
                 }
                 
