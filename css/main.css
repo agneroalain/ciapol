@@ -12,6 +12,7 @@
 body{
     background: url("http://unsplash.it/2000/700");
     background-attachment: fixed;
+    
     margin: 0px;
     font-family: arvo normal400;
     }
@@ -153,16 +154,19 @@ form input[type="submit"]:hover,form input[type="button"]:hover{
     height: 150px;}
 #carte{
     background-color: #FFF;
-    width: 400px;
+    width: 100px;
     padding: 10px;
     box-shadow: 0 5px 0 rgba(0,0,0,0.05) inset;
     display: inline-block;
     vertical-align: top;}
 #fichier{
     background-color: #FFF;
-    width: 400px;
+    width: 300px;
     box-shadow: 0 5px 0 rgba(0,0,0,0.05) inset;
     padding: 10px;}
+    .fichier_table{
+        width: 300px;
+    }
 #carte p{
     float: left;}
 #carte img{
@@ -170,16 +174,17 @@ form input[type="submit"]:hover,form input[type="button"]:hover{
     margin: 10px;}
 #ecran{
     display: inline-block;
-    width: 66%;}
+    width: 75%;
+    }
 #interface{
     background-color: white;
     padding: 10px;
-    min-width:400px;}
+    min-width:300px;}
 #bilan{
     margin-top:10px;
     background-color: white;
     padding: 10px;
-    min-width: 400px;
+    min-width: 300px;
     overflow: hidden;}
 .rub{
     background-color: #3498db;
@@ -195,7 +200,6 @@ form input[type="submit"]:hover,form input[type="button"]:hover{
     color: white;
     min-width: 400px;}
 #left{
-    width: 430px;
     display: inline-block;
     vertical-align: top;}
 .s_left{
@@ -214,8 +218,6 @@ form input[type="submit"]:hover,form input[type="button"]:hover{
     color: #34495e;
     text-align: center;
     }
-#ecran p {
-    background-color:white;}
 .labloc{
     width: 100%;
     display: block;
@@ -224,6 +226,7 @@ form input[type="submit"]:hover,form input[type="button"]:hover{
     background-color: #97D6FB;
     min-width: 400px;
     height: 0px;
+    padding: 0;
     overflow:hidden;}
 td{
     background-color: white;

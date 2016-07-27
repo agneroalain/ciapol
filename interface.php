@@ -36,7 +36,7 @@
                     </div><!-- fin card  -->
                     <div id="fichier" class="s_left"><!-- debut fichier -->
                         <center><h3 class="titre">Fichier<h3></center>
-                        <table class="tableau" align="center" width="400px">
+                        <table class="tableau fichier_table" align="center" width="400px">
                             <?php
                                 // recuperation de toutes les information sur les fichiers de l'utilisateur
                                 $reqfichier = $bdd->prepare("SELECT * FROM fichier WHERE mat_emp=?");
@@ -87,14 +87,14 @@
                                     <center>
                                         <h3 class="titre">INTERFACE</h3>
                                         <?php if(isset($_GET['errcong'])){
-                                            echo "<span style='color:red'><i>".$_GET['errcong']."</i></span>";
+                                              
                                         }
                                         if(isset($_GET['msgCong'])){
                                             echo "<span style='color:blue'><i>".$_GET['msgCong']."</i></span>";
                                         } ?>
                                         <h3 class="rub"  onclick="return true" onmousedown="choix('div1');">DEMANDE DE DEPART EN CONGE </h3>
                                         <div class="bloc" id="div1" ><!-- debut div1 -->
-                                            <form method="POST" action="php/conge.php" id="demandecong">
+                                            <form class="form_dem_cong form_bloc" method="POST" action="php/conge.php" id="demandecong">
                                                 <?php 
                                                     $an = date('Y');
                                                     $mois = date('m');
@@ -102,8 +102,10 @@
                                                     $min = $an.'-'.$mois.'-'.$jour;
                                                     $max = $an.'-12-31';
                                                 ?>
-                                                <p> <label for="dat_dep_cong" class="labloc"/>Date de depart : </label> <input type="date" name="dat_dep_cong" max="<?php echo $max; ?>" min="<?php echo $min; ?>" id="dat_dep_cong"/>  </p>
-                                                <p> <label for="dat_fin_cong" class="labloc"/>Date de retour : </label> <input type="date" name="dat_fin_cong" max="<?php echo $max; ?>" min="<?php echo $min; ?>" id="dat_fin_cong"/>  </p>
+                                                <div class="row">
+                                                    <p> <label for="dat_dep_cong" class="labloc"/>Date de depart : </label> <input type="date" name="dat_dep_cong" max="<?php echo $max; ?>" min="<?php echo $min; ?>" id="dat_dep_cong"/>  </p>
+                                                    <p> <label for="dat_fin_cong" class="labloc"/>Date de retour : </label> <input type="date" name="dat_fin_cong" max="<?php echo $max; ?>" min="<?php echo $min; ?>" id="dat_fin_cong"/>  </p>
+                                                </div>
                                                 <p> <label for="obs_cong" class="labloc"/>Motif : </label> <textarea name="obs_cong" id="obs_cong"></textarea> </p>                                
                                                 <p> <label for="congadr" class="labloc"/>Adresse durant les congés : </label> <input type="text" name="congadr" id="congadr"/>  </p>
                                                 <p> <label for="congint" class="labloc"/>Nom de la perssonne devant assurer l'interime : </label> 
@@ -118,14 +120,16 @@
                                                 <p><input type="submit" name="demandecong" value="Envoyer la demande"/></p>
                                             </form>
                                         </div><!-- fin div1  -->
-                                        <?php if(isset($_GET['errabs'])){
-                                            echo "<span style='color:red'><i>".$_GET['errabs']."</i></span>";
+                                        <?php if(isset($_GET['msgAbs'])){
+                                            echo "<span style='color:red'><i>".$_GET['msgAbs']."</i></span>";
                                         } ?>
                                         <h3 class="rub"  onclick="return false" onmousedown="choix('div2');">DEMANDE D'AUTORISATION D'ABSENCE</h3>
                                         <div class="bloc" id="div2" ><!-- debut div2 -->
-                                            <form method="POST" action="php/absence.php" id="demandecong">
+                                            <form class="form_dem_ab form_bloc" method="POST" action="php/absence.php" id="demandecong">
+                                            <div class="row">
                                                 <p> <label for="dat_dep_abs" class="labloc"/>Date de depart : </label> <input type="date" name="dat_dep_abs" max="<?php echo $max; ?>" min="<?php echo $min; ?>" id="dat_dep_abs"/>  </p>
                                                 <p> <label for="dat_fin_abs" class="labloc"/>Date de retour : </label> <input type="date" name="dat_fin_abs" max="<?php echo $max; ?>" min="<?php echo $min; ?>" id="dat_fin_abs"/>  </p>
+                                            </div>
                                                 <p> <label for="obs_abs" class="labloc"/>Motif : </label> <textarea name="obs_abs" id="obs_abs"></textarea> </p>
                                                 <p> <label for="absint" class="labloc"/>Nom de la perssonne devant assurer l'interime : </label> 
                                                 <select name="absint" id="absint">
@@ -141,7 +145,7 @@
                                         </div><!-- fin div2  -->
                                         <h3 class="rub"  onclick="return false" onmousedown="choix('div3');">DEMANDE DE FORMATION</h3>
                                         <div class="bloc" id="div3" ><!-- debut div3 -->
-                                            <form action="">
+                                            <form class="form_dem_form form_bloc" action="">
                                                 <table>
                                                     <tr>
                                                         <td>Date</td>
@@ -174,7 +178,6 @@
                                                 <li rel="panel1" class="active">Bilan des congés</li>
                                                 <li rel="panel2">Bilan des absences</li>
                                                 <li rel="panel3">Bilan des formations </li>
-                                                <li rel="panel4">autre</li>
                                         </ul>
                                         </center>
                                         <div id="panel1" class="panel active"><!-- debut panel1 -->
@@ -210,12 +213,12 @@
                                         <div id="panel2" class="panel"><!-- debut panel2 -->
                                         <table align="center">
                                             <tr>
-                                                <td>N° Absence</td>
+                                                <td>#</td>
                                                 <td>Date Absence</td>
                                                 <td>Date depart</td>
                                                 <td>Date retour</td>
-                                                <td>Interimaire</td>
                                                 <td>Motif</td>
+                                                <td>Fiche</td>
                                             </tr>
                                             <?php 
                                             
@@ -232,7 +235,7 @@
                                                                 $date2 = ucfirst(strftime('%A, le %d ',strtotime($abinfo["dat_fin_dem"])));
                                                                 $date2 .= ucfirst(strftime('%B %Y ',strtotime($abinfo["dat_fin_dem"])));
                                                                 
-                                                                echo "<tr><td>".$abinfo["cod_dem"]."</td><td>".$date."</td><td>".$date1."</td><td>".$date2."</td><td>".$abinfo["mat_int"]."</td><td>".$abinfo["lib_dem"]."</td></tr>";
+                                                                echo "<tr><td>".$abinfo["cod_dem"]."</td><td>".$date."</td><td>".$date1."</td><td>".$date2."</td><td>".$abinfo["lib_dem"]."</td><td class='bt_tab'><a href='notification.php?id=".$abinfo['cod_dem']."'> <i class='fa fa-file-o' aria-hidden='true'></i></a></td></tr>";
                                                             }
                                             ?>
                                         </table>
@@ -261,30 +264,7 @@
                                             </tr>
                                         </table>
                                         </div><!-- fin panel3 -->
-                                        <div id="panel4" class="panel"><!-- debut panel4 -->
-                                                    <table align="center">
-                                                        <tr>
-                                                            <td>Date depart</td>
-                                                            <td>Date retour</td>
-                                                            <td>Motif</td>
-                                                            <td>Nombre de jour restant</td>
-                                                            <td>Interimaire</td>
-                                                            <td>Solde droit à congé</td>
-                                                            <td>Solde droit à congé acquis</td>
-                                                            <td>Nombre de jour à deduire</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                    </table>
-                                        </div><!-- fin panel4 -->
+                                       
                                         
                                     </div><!-- fin tab-panels -->
                                 </div><!-- fin bilan -->

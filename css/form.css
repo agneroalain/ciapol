@@ -19,3 +19,20 @@
 #formService{
     width: 600px;
 }
+.form_bloc input, textarea, select{
+    width: 100%;
+}
+form .row{
+    display: flex;
+    justify-content: space-around;
+}
+form .row p{
+    width: 100%;
+    margin: 10px;
+}
+.form_bloc{
+    padding: 20px;
+}
+.form_dem_form table{
+    width: 100%;
+}
